@@ -21,7 +21,7 @@ public class clienteServicio {
 
     public clienteModelo crearCliente (clienteModelo nvoCliente)
     {
-        if (this.clienteRepositorio.existsByidentificacion(nvoCliente.getIdentificacion()))
+        if (!this.clienteRepositorio.existsByidentificacion(nvoCliente.getIdentificacion()))
         {
             return this.clienteRepositorio.save(nvoCliente);
         } 

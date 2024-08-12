@@ -19,5 +19,7 @@ public class platilloModelo {
 
     private double precio;
 
+    private String nombre;
+
 
 }
