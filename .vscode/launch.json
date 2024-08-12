@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-BackEndApplication<Restaurante>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "unah.lenguajes.Restaurante.BackEndApplication",
+            "projectName": "Restaurante",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
