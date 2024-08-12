@@ -3,7 +3,8 @@ use restaurante;
 create table platillo
 (
 platilloid int AUTO_INCREMENT PRIMARY KEY,
-precio decimal (10,2)
+precio decimal (10,2),
+nombre varchar(100)
 );
 
 create table inventario
