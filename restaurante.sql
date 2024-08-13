@@ -10,7 +10,7 @@ imagen varchar(250)
 
 create table inventario
 (
-invetarioid int AUTO_INCREMENT PRIMARY KEY,
+inventarioid int AUTO_INCREMENT PRIMARY KEY,
 nombre varchar (30),
 preciocompra decimal (20,2),
 cantidad decimal (12,2),
