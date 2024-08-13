@@ -4,7 +4,8 @@ create table platillo
 (
 platilloid int AUTO_INCREMENT PRIMARY KEY,
 precio decimal (10,2),
-nombre varchar(100)
+nombre varchar(100),
+imagen varchar(250)
 );
 
 create table inventario
@@ -16,9 +17,9 @@ cantidad decimal (12,2),
 unidadmetrica varchar(20)
 );
 
-create TABLE ingredientes 
+create TABLE inventario_platillo
 (
-	inventarioid int,
+    inventarioid int,
     platilloid int,
     cantidad decimal, 
     FOREIGN KEY (inventarioid) REFERENCES inventario(invetarioid),
@@ -34,7 +35,7 @@ CREATE TABLE ofertas
     FOREIGN KEY (platilloid) REFERENCES platillo(platilloid)
 );
 
-create table oredenesdecompra
+create table oredenes_de_compra
 (
 ordencompraid int AUTO_INCREMENT PRIMARY KEY,
     inventarioid int,
@@ -50,7 +51,7 @@ mesaid int  PRIMARY KEY,
 cantidaddesillasreservadas int
 );
 
-CREATE TABLE cateogriapermiso
+CREATE TABLE cateogria_permiso
 (
     categoriapermisoid int PRIMARY KEY,
     nombre varchar(30),
@@ -87,7 +88,7 @@ CREATE TABLE reserva
     
 );
 
-CREATE TABLE transaccionalreserva 
+CREATE TABLE reserva_mesa
 (
     reservaid int,
     mesaid int,
@@ -114,7 +115,7 @@ CREATE TABLE factura
     
 );
 
-create table transaccionalfactura
+create table factura_platillo
 (
     facturaid int,
     platilloid int,
@@ -122,6 +123,5 @@ create table transaccionalfactura
     preciototal double (12,2) ,
     FOREIGN KEY (facturaid) REFERENCES factura(facturaid),
      FOREIGN KEY (platilloid) REFERENCES platillo(platilloid),
-         
     PRIMARY KEY (facturaid, platilloid)
 );
