@@ -14,7 +14,8 @@ inventarioid int AUTO_INCREMENT PRIMARY KEY,
 nombre varchar (30),
 preciocompra decimal (20,2),
 cantidad decimal (12,2),
-unidadmetrica varchar(20)
+unidadmetrica varchar(20),
+minimo_recompra int 
 );
 
 create TABLE inventario_platillo
@@ -48,7 +49,7 @@ ordencompraid int AUTO_INCREMENT PRIMARY KEY,
 create TABLE mesa
 (
 mesaid int  PRIMARY KEY,
-cantidaddesillasreservadas int
+sillas int
 );
 
 CREATE TABLE cateogria_permiso
@@ -63,7 +64,7 @@ CREATE TABLE cliente
 	clienteid int AUTO_INCREMENT PRIMARY KEY  NOT NULL,
     nombre varchar (30),
     apellido varchar (25),
-    IDENTIFICACION varchar(13)
+    identificacion varchar(13)
 );
 
 create table usuario 
@@ -100,18 +101,18 @@ CREATE TABLE reserva_mesa
 
 CREATE TABLE factura 
 (
-	facturaid int AUTO_INCREMENT PRIMARY KEY NOT NULL,
-    usuarioid int,
-    clienteid int,
-    ofertaid int, 
-    fecha timestamp,
-    metododepago varchar (30),
-    impuesto double(12,2),
-    total double (12,2),
+   	facturaid int AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    	usuarioid int,
+    	clienteid int,
+    	ofertaid int, 
+    	fecha timestamp,
+    	metododepago varchar (30),
+    	impuesto double(12,2),
+    	total double (12,2),
     
-    FOREIGN KEY (usuarioid) REFERENCES usuario(usuarioid),
-     FOREIGN KEY (clienteid) REFERENCES cliente(clienteid),
-    FOREIGN KEY (ofertaid) REFERENCES ofertas(ofertaid)
+    	FOREIGN KEY (usuarioid) REFERENCES usuario(usuarioid),
+	FOREIGN KEY (clienteid) REFERENCES cliente(clienteid),
+    	FOREIGN KEY (ofertaid) REFERENCES ofertas(ofertaid)
     
 );
 
