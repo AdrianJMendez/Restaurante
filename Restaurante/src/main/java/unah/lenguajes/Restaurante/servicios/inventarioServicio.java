@@ -48,15 +48,14 @@ public class inventarioServicio {
     }
 
 
-    public inventarioModelo actualizarPlatillo(Integer inventarioID ,inventarioModelo inventario)
+    public inventarioModelo actualizarInventario(Integer inventarioID ,inventarioModelo inventario)
     {
         if(this.inventarioRepositorio.existsById(inventarioID))
         {
             inventarioModelo inventarioActualizar = this.inventarioRepositorio.findById(inventarioID).get();
-            inventarioActualizar.setNombre(inventario.getNombre());
             inventarioActualizar.setCantidad(inventario.getCantidad());
             inventarioActualizar.setPreciocompra(inventario.getPreciocompra());
-            inventarioActualizar.setUnidadmetrica(inventario.getUnidadmetrica());
+
             this.inventarioRepositorio.save(inventarioActualizar);
             return inventarioActualizar;
         } else 

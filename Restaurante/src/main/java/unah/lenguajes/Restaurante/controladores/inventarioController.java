@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import unah.lenguajes.Restaurante.modelos.clienteModelo;
+
 import unah.lenguajes.Restaurante.modelos.inventarioModelo;
 import unah.lenguajes.Restaurante.servicios.inventarioServicio;
 
@@ -24,7 +24,7 @@ public class inventarioController {
         }
 
         @PostMapping("/crear")
-        public inventarioModelo crearCliente(@RequestBody inventarioModelo nvoInventario)
+        public inventarioModelo crearInventario(@RequestBody inventarioModelo nvoInventario)
         {
             return this.inventarioServicio.crearInvetario(nvoInventario);
         }
