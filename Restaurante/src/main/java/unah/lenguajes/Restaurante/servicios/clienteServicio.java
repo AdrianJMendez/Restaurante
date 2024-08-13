@@ -58,7 +58,7 @@ public class clienteServicio {
         }
     }
 
-    public clienteModelo actualizar (Integer clienteID, clienteModelo cliente)
+    public clienteModelo actualizar(Integer clienteID, clienteModelo cliente)
     {
         if(this.clienteRepositorio.existsById(clienteID)){
 
@@ -75,7 +75,7 @@ public class clienteServicio {
         }
     }
 
-    public clienteModelo actualizarPorDNI (String dni, clienteModelo cliente)
+    public clienteModelo actualizarPorDNI(String dni, clienteModelo cliente)
     {
         if(this.clienteRepositorio.existsByidentificacion(dni)){
 
