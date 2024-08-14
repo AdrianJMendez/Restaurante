@@ -52,7 +52,7 @@ mesaid int  PRIMARY KEY,
 sillas int
 );
 
-CREATE TABLE cateogria_permiso
+CREATE TABLE categoria_permiso
 (
     categoriapermisoid int PRIMARY KEY,
     nombre varchar(30),
