@@ -26,5 +26,8 @@ public class inventarioModelo {
 
     private String unidadmetrica ;
 
+    @Column(name="minimo_recompra")
+    private int minimo_recompra;
+
 
 }
