@@ -21,5 +21,7 @@ public class platilloModelo {
 
     private String nombre;
 
+    private String imagen;
+
 
 }

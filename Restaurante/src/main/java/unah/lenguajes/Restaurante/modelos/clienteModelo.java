@@ -19,7 +19,9 @@ public class clienteModelo {
     private int clienteid;
 
     private String nombre;
+
     private String apellido;
+    
     private String identificacion;
 
 }

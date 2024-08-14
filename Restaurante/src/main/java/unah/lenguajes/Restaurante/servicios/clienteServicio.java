@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import jakarta.transaction.Transactional;
 import unah.lenguajes.Restaurante.modelos.clienteModelo;
 import unah.lenguajes.Restaurante.repositorios.clienteRepositorio;
 
@@ -29,7 +30,7 @@ public class clienteServicio {
             return null;
         }
     }
-
+    @Transactional
     public boolean deleteClientePorDNI (String dni)
     {
         if (this.clienteRepositorio.existsByidentificacion(dni))
@@ -44,6 +45,7 @@ public class clienteServicio {
         }
     }
 
+   
     public boolean deleteCliente( Integer clienteId)
     {
 
@@ -58,7 +60,7 @@ public class clienteServicio {
         }
     }
 
-    public clienteModelo actualizar (Integer clienteID, clienteModelo cliente)
+    public clienteModelo actualizar(Integer clienteID, clienteModelo cliente)
     {
         if(this.clienteRepositorio.existsById(clienteID)){
 
@@ -75,7 +77,7 @@ public class clienteServicio {
         }
     }
 
-    public clienteModelo actualizarPorDNI (String dni, clienteModelo cliente)
+    public clienteModelo actualizarPorDNI(String dni, clienteModelo cliente)
     {
         if(this.clienteRepositorio.existsByidentificacion(dni)){
 

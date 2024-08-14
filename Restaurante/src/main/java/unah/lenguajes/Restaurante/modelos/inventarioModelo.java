@@ -16,7 +16,7 @@ public class inventarioModelo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="inventarioid")
-    private int inventarioID ;
+    private int inventarioid ;
 
     private String nombre ;
 
@@ -25,6 +25,9 @@ public class inventarioModelo {
     private double cantidad;
 
     private String unidadmetrica ;
+
+    @Column(name="minimo_recompra")
+    private int minimo_recompra;
 
 
 }

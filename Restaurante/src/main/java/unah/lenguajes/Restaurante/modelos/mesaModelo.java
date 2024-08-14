@@ -16,9 +16,9 @@ public class mesaModelo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "platilloid")
-    private int platilloid ;
+    @Column(name = "mesaid")
+    private int mesaid ;
     
-    private double precio;
+    private int sillas;
 
 }

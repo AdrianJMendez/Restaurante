@@ -6,6 +6,13 @@ import org.springframework.stereotype.Repository;
 import unah.lenguajes.Restaurante.modelos.inventarioModelo;
 
 @Repository
-public interface inventarioRepositorio extends JpaRepository<inventarioModelo,Integer>{
+
+public interface inventarioRepositorio extends JpaRepository <inventarioModelo, Integer> {
+
+    public boolean existsBynombre(String nombre);
+    
+    public long deleteBynombre(String nombre);
+
+    public inventarioModelo findBynombre(String nombre);
 
 }
