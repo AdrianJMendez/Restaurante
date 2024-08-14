@@ -1,5 +1,7 @@
 package unah.lenguajes.Restaurante.controladores;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,9 +12,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import unah.lenguajes.Restaurante.modelos.clienteModelo;
 import unah.lenguajes.Restaurante.modelos.inventarioModelo;
 import unah.lenguajes.Restaurante.servicios.inventarioServicio;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 @RequestMapping("/api/restaurante/inventario")
@@ -21,8 +24,14 @@ public class inventarioController {
     @Autowired
     private inventarioServicio inventarioServicio;
 
+        @GetMapping("/todos")
+        public List<inventarioModelo> obtenerTodos()
+        {
+            return this.inventarioServicio.obtenerTodo();
+        }
+        
         @GetMapping("/prueba")
-        public String getMethodName() 
+        public String prueba() 
         {
             return "hola Inventario";
         }
@@ -55,10 +64,5 @@ public class inventarioController {
          {
            return this.inventarioServicio.actualizarInventarioPorNombre(nombre, inventario);
          }
-
-
-
-
-
 
 }
