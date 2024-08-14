@@ -65,6 +65,7 @@ public class platilloServicio {
             platilloModelo platilloActualizar = this.platilloRepositorio.findById(platilloID).get();
             platilloActualizar.setNombre(platillo.getNombre());
             platilloActualizar.setPrecio(platillo.getPrecio());
+            platilloActualizar.setImagen(platillo.getImagen());
             this.platilloRepositorio.save(platilloActualizar);
             return platilloActualizar;
         } else 
@@ -81,6 +82,7 @@ public class platilloServicio {
             platilloModelo platilloActualizar = this.platilloRepositorio.findByNombre(nombre);
             platilloActualizar.setNombre(platillo.getNombre());
             platilloActualizar.setPrecio(platillo.getPrecio());
+            platilloActualizar.setImagen(platillo.getImagen());
             this.platilloRepositorio.save(platilloActualizar);
             return platilloActualizar;
         } else 

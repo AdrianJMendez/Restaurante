@@ -65,9 +65,4 @@ public class platilloController {
         return this.platilloServicio.actualizarPlatilloPorNombre(nombre, platillo);
     }
 
-
-    
-    
-    
-
 }
