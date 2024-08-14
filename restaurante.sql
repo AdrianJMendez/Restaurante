@@ -4,21 +4,23 @@ create table platillo
 (
 platilloid int AUTO_INCREMENT PRIMARY KEY,
 precio decimal (10,2),
-nombre varchar(100)
+nombre varchar(100),
+imagen varchar(250)
 );
 
 create table inventario
 (
-invetarioid int AUTO_INCREMENT PRIMARY KEY,
+inventarioid int AUTO_INCREMENT PRIMARY KEY,
 nombre varchar (30),
 preciocompra decimal (20,2),
 cantidad decimal (12,2),
-unidadmetrica varchar(20)
+unidadmetrica varchar(20),
+minimo_recompra int 
 );
 
-create TABLE ingredientes 
+create TABLE inventario_platillo
 (
-	inventarioid int,
+    inventarioid int,
     platilloid int,
     cantidad decimal, 
     FOREIGN KEY (inventarioid) REFERENCES inventario(invetarioid),
@@ -34,7 +36,7 @@ CREATE TABLE ofertas
     FOREIGN KEY (platilloid) REFERENCES platillo(platilloid)
 );
 
-create table oredenesdecompra
+create table oredenes_de_compra
 (
 ordencompraid int AUTO_INCREMENT PRIMARY KEY,
     inventarioid int,
@@ -47,10 +49,10 @@ ordencompraid int AUTO_INCREMENT PRIMARY KEY,
 create TABLE mesa
 (
 mesaid int  PRIMARY KEY,
-cantidaddesillasreservadas int
+sillas int
 );
 
-CREATE TABLE cateogriapermiso
+CREATE TABLE cateogria_permiso
 (
     categoriapermisoid int PRIMARY KEY,
     nombre varchar(30),
@@ -62,7 +64,7 @@ CREATE TABLE cliente
 	clienteid int AUTO_INCREMENT PRIMARY KEY  NOT NULL,
     nombre varchar (30),
     apellido varchar (25),
-    IDENTIFICACION varchar(13)
+    identificacion varchar(13)
 );
 
 create table usuario 
@@ -87,7 +89,7 @@ CREATE TABLE reserva
     
 );
 
-CREATE TABLE transaccionalreserva 
+CREATE TABLE reserva_mesa
 (
     reservaid int,
     mesaid int,
@@ -99,22 +101,22 @@ CREATE TABLE transaccionalreserva
 
 CREATE TABLE factura 
 (
-	facturaid int AUTO_INCREMENT PRIMARY KEY NOT NULL,
-    usuarioid int,
-    clienteid int,
-    ofertaid int, 
-    fecha timestamp,
-    metododepago varchar (30),
-    impuesto double(12,2),
-    total double (12,2),
+   	facturaid int AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    	usuarioid int,
+    	clienteid int,
+    	ofertaid int, 
+    	fecha timestamp,
+    	metododepago varchar (30),
+    	impuesto double(12,2),
+    	total double (12,2),
     
-    FOREIGN KEY (usuarioid) REFERENCES usuario(usuarioid),
-     FOREIGN KEY (clienteid) REFERENCES cliente(clienteid),
-    FOREIGN KEY (ofertaid) REFERENCES ofertas(ofertaid)
+    	FOREIGN KEY (usuarioid) REFERENCES usuario(usuarioid),
+	FOREIGN KEY (clienteid) REFERENCES cliente(clienteid),
+    	FOREIGN KEY (ofertaid) REFERENCES ofertas(ofertaid)
     
 );
 
-create table transaccionalfactura
+create table factura_platillo
 (
     facturaid int,
     platilloid int,
@@ -122,6 +124,5 @@ create table transaccionalfactura
     preciototal double (12,2) ,
     FOREIGN KEY (facturaid) REFERENCES factura(facturaid),
      FOREIGN KEY (platilloid) REFERENCES platillo(platilloid),
-         
     PRIMARY KEY (facturaid, platilloid)
 );
