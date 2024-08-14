@@ -49,7 +49,8 @@ ordencompraid int AUTO_INCREMENT PRIMARY KEY,
 create TABLE mesa
 (
 mesaid int  PRIMARY KEY,
-sillas int
+sillas int,
+ocupado TINYINT
 );
 
 CREATE TABLE categoria_permiso
