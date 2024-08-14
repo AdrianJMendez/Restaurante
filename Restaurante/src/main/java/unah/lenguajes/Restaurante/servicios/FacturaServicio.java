@@ -33,7 +33,6 @@ public class FacturaServicio
         this.facturaRepositorio.save(factura);
         for(FacturaPlatillo facturaPlatillo : factura.getPlatillos()) 
         {
-            
             facturaPlatillo.setFactura(factura);
             //this.facturaPlatilloRepositorio.save(facturaPlatillo);
             //System.out.println(facturaPlatillo);
