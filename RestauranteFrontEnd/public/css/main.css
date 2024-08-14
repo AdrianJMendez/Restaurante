@@ -1,0 +1,146 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: "Lexend Peta", sans-serif;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    background-color: rgba(181, 184, 173, 0.9);
+    color: #2C2721;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; 
+}
+
+.header {
+    background-color: #E0E0E0;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    height: 50px;
+    font-size: 2rem;
+    position: fixed; /* O usa position: sticky; */
+    top: 0; /* Mantiene el header en la parte superior */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000; /* Asegura que el header esté sobre otros elementos */
+    margin-top: 10px;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    padding: 20px;
+    height: 70%;
+    width: 90%;
+  }
+  .grid-item {
+    font-size: 1.5rem;
+    background-color: rgba(255, 255, 255, 0.35);
+    border-radius: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   
+    text-align: center;
+    box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .grid-item:hover {
+    color: rgba(255, 255, 255, 0.8);
+    box-shadow: 6px 6px 10px rgba(255, 255, 255, 0.8); /* Sombra blanca al hacer clic */
+  }
+
+.item-img{
+    height: 100px;
+    width: 100px;
+}
+
+#form {
+    width: 80%;
+    height: 100%;
+    background-color: #FFFFFF;
+    border: 8px solid #2C2721;
+    border-radius: 10%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+#loginImg{
+    z-index: 9999;
+    position: absolute;
+    margin-right: 74.5%;
+    display: none;
+}
+
+
+
+ .form_login{
+    height: 80%;
+ }
+ h1 {
+    font-size: 4rem;
+    color: #2C2721;
+    margin-bottom: 10%; /* Espacio adicional debajo del h1 */
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+label {
+    font-size: 1.5rem;
+    color: #2C2721;
+    margin-left: 20px; /* Espacio entre el input y el label */
+}
+
+input[type="text"],
+input[type="password"] {
+    font-size: 1.5rem;
+    color: #FFFFFF;
+    background-color: #8d7054;
+    border: 2px solid #2C2721;
+    border-radius: 5px;
+    padding: 10px;
+    width: 70%; /* Ajuste de ancho para acomodar el label a la derecha */
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    font-size: 1.5rem;
+    color: #FFFFFF;
+    background-color:  #8d7054;
+    border: 2px solid #66513C;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    width: 100%;
+}
+
+input[type="submit"]:hover {
+    background-color: #66513C;
+    color: #FFFFFF;
+}
+
+
+@media (min-width: 1536px) { /* Ajusta el valor según tus necesidades */
+    #loginImg {
+        display: block;
+    }
+
+}
