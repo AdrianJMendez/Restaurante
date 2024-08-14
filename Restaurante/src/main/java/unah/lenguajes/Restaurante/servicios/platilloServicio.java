@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import jakarta.transaction.Transactional;
 import unah.lenguajes.Restaurante.modelos.platilloModelo;
 import unah.lenguajes.Restaurante.repositorios.platilloRepositorio;
 
@@ -43,11 +44,41 @@ public class platilloServicio {
             return false;
         }
     }
+
+    @Transactional
+    public boolean deletePlatilloPorNombre (String nombre)
+    {
+        if (this.platilloRepositorio.existsBynombre(nombre))
+        {
+           this.platilloRepositorio.deleteBynombre(nombre);
+           return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     public platilloModelo actualizarPlatillo(Integer platilloID ,platilloModelo platillo)
     {
         if(this.platilloRepositorio.existsById(platilloID))
         {
             platilloModelo platilloActualizar = this.platilloRepositorio.findById(platilloID).get();
+            platilloActualizar.setNombre(platillo.getNombre());
+            platilloActualizar.setPrecio(platillo.getPrecio());
+            this.platilloRepositorio.save(platilloActualizar);
+            return platilloActualizar;
+        } else 
+        {
+            return null;
+        }
+
+    }
+
+    public platilloModelo actualizarPlatilloPorNombre(String nombre ,platilloModelo platillo)
+    {
+        if(this.platilloRepositorio.existsBynombre(nombre))
+        {
+            platilloModelo platilloActualizar = this.platilloRepositorio.findByNombre(nombre);
             platilloActualizar.setNombre(platillo.getNombre());
             platilloActualizar.setPrecio(platillo.getPrecio());
             this.platilloRepositorio.save(platilloActualizar);

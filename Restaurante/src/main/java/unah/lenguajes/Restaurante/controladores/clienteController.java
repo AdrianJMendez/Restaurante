@@ -3,7 +3,7 @@ package unah.lenguajes.Restaurante.controladores;
 import org.springframework.web.bind.annotation.RestController;
 
 import unah.lenguajes.Restaurante.modelos.clienteModelo;
-import unah.lenguajes.Restaurante.modelos.inventarioModelo;
+
 import unah.lenguajes.Restaurante.servicios.clienteServicio;
 
 import java.util.List;
