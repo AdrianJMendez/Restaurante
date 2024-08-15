@@ -42,6 +42,11 @@ public class usuarioController {
     {
         return this.usuarioServicio.deleteUsuario(id);
     }
+    @DeleteMapping("/borrar/user/{user}") 
+    public boolean borrarPlatillo(@PathVariable(name="user") String user)
+    {
+        return this.usuarioServicio.deleteUsuarioByNombre(user);
+    }
 
     @PutMapping("/actualizar/id/{id}")
     public  usuarioModelo actualizarPorID(@PathVariable(name="id") Integer id, @RequestBody userDTO usuario) {
