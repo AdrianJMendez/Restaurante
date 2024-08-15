@@ -44,10 +44,10 @@ public class usuarioController {
     }
 
     @PutMapping("/actualizar/id/{id}")
-    public  usuarioModelo actualizarPorID(@PathVariable(name="id") Integer id, @RequestBody usuarioModelo usuario) {
+    public  usuarioModelo actualizarPorID(@PathVariable(name="id") Integer id, @RequestBody userDTO usuario) {
         
         
-        return this.usuarioServicio.actualizarUsuario(id, usuario);
+        return this.usuarioServicio.actualizarUsuario(id, usuario.getUser(),usuario.getContrasena(),usuario.getCategoriapermiso());
     }
 
 

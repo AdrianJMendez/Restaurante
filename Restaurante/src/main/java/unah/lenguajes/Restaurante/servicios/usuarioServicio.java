@@ -37,11 +37,15 @@ public class usuarioServicio {
             nvoUsuario.setContrasena(contrasena);
             nvoUsuario.setCategoriaPermiso(permiso);
             return usuarioRepositorio.save(nvoUsuario);
+
         }
        else 
        {
         return null;
        }
+
+    
+
     }
 
     public boolean deleteUsuario(Integer usuarioid)
@@ -55,7 +59,7 @@ public class usuarioServicio {
             return false;
         }
     }
-
+/* 
     public usuarioModelo actualizarUsuario (Integer usuarioid, usuarioModelo usuario)
     {
         if(this.usuarioRepositorio.existsById(usuarioid))
@@ -72,7 +76,26 @@ public class usuarioServicio {
         else 
         {
             return null;
+        }*/
+        public usuarioModelo actualizarUsuario (Integer usuarioid, String user, String contrasena, Integer categoriaPermisoID)
+        {
+            if (this.usuarioRepositorio.existsById(usuarioid))
+            {
+                usuarioModelo usuarioActualizar = this.usuarioRepositorio.findById(usuarioid).get();
+                categoriaPermisoModelo permiso = categoriaPermisoRepositorio.findById(categoriaPermisoID).get();
+                usuarioActualizar.setUser(user);
+                usuarioActualizar.setContrasena(contrasena);
+                usuarioActualizar.setCategoriaPermiso(permiso);
+
+                this.usuarioRepositorio.save(usuarioActualizar);
+                return usuarioActualizar;
+
+            } else{
+                return null;
+            }
+            
+    
         }
 
     }
-}
+

@@ -1,6 +1,7 @@
 package unah.lenguajes.Restaurante.modelos;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -29,7 +30,7 @@ public class usuarioModelo {
 
     private String contrasena;
 
-
+    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name ="categoriapermiso", referencedColumnName = "categoriapermisoid", nullable = false)
     private categoriaPermisoModelo categoriaPermiso;
