@@ -59,6 +59,18 @@ public class usuarioServicio {
             return false;
         }
     }
+
+    public boolean deleteUsuarioByNombre (String user)
+    {
+        if(this.usuarioRepositorio.existsByUser(user))
+        {
+            this.usuarioRepositorio.deleteByUser(user);
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 /* 
     public usuarioModelo actualizarUsuario (Integer usuarioid, usuarioModelo usuario)
     {
