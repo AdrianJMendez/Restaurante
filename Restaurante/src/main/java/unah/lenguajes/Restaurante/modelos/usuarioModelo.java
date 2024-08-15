@@ -1,13 +1,16 @@
 package unah.lenguajes.Restaurante.modelos;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -21,11 +24,14 @@ public class usuarioModelo {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column(name="usuarioid")
     private int usuarioid;
+
     private String user;
+
     private String contrasena;
 
-    @ManyToOne
-    @JoinColumn(name ="categoriapermiso",referencedColumnName = "categoriapermisoid")
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name ="categoriapermiso", referencedColumnName = "categoriapermisoid", nullable = false)
     private categoriaPermisoModelo categoriaPermiso;
 
 }
