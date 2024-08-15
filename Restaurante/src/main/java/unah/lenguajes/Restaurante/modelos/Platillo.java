@@ -32,7 +32,7 @@ public class Platillo
     @OneToOne(mappedBy = "platillo", cascade = CascadeType.ALL)
     private Oferta oferta;
 
-    @OneToMany(mappedBy = "platillo", cascade = CascadeType.MERGE)
-    @JsonIgnore
-    private List<FacturaPlatillo> facturas;
+    //@OneToMany(mappedBy = "platillo", cascade = CascadeType.MERGE)
+    //@JsonIgnore
+    //private List<FacturaPlatillo> facturas;
 }

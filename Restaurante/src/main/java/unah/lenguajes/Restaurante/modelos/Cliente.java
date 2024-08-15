@@ -32,7 +32,7 @@ public class Cliente
 
 
     //Relaciones
-    @OneToMany(mappedBy = "cliente",cascade = CascadeType.MERGE)
-    @JsonIgnore
-    private List<Factura> facturas;
+    //@OneToMany(mappedBy = "cliente",cascade = CascadeType.MERGE)
+    //@JsonIgnore
+    //private List<Factura> facturas;
 }

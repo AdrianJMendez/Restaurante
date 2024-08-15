@@ -16,14 +16,18 @@ public class FacturaPlatilloServicio
     @Autowired
     private FacturaPlatilloRepositorio facturaPlatilloRepositorio;
 
-    public void generarRegistros(Factura factura)
+    public void borrarRegistros(Factura factura)
     {
-        for(FacturaPlatillo facturaPlatillo : factura.getPlatillos()) 
+        List<FacturaPlatillo> registros = this.facturaPlatilloRepositorio.findByFactura(factura);
+
+        for (FacturaPlatillo facturaPlatillo : registros) 
         {
-            System.out.println(facturaPlatillo);
-            facturaPlatillo.setFactura(factura);
-            //this.facturaPlatilloRepositorio.save(facturaPlatillo);
+            this.facturaPlatilloRepositorio.delete(facturaPlatillo);
         }
-        
+    }
+
+    public FacturaPlatillo crearFacturaPlatillo(FacturaPlatillo facturaPlatillo)
+    {
+        return this.facturaPlatilloRepositorio.save(facturaPlatillo);
     }
 }

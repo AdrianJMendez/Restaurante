@@ -28,9 +28,10 @@ public class Usuario
 
     private String contrasena;
 
-
+    @Column(name = "categoriapermiso")
+    private String categoriaPermiso;
     //Relaciones
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.MERGE)
-    @JsonIgnore
-    private List<Factura> facturas;
+    //@OneToMany(mappedBy = "usuario", cascade = CascadeType.MERGE)
+    //@JsonIgnore
+    //private List<Factura> facturas;
 }

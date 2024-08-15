@@ -13,7 +13,7 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name = "transaccionalfactura")
+@Table(name = "factura_platillo")
 @Data
 public class FacturaPlatillo 
 {
@@ -21,13 +21,13 @@ public class FacturaPlatillo
     @JsonIgnore
     private FacturaPlatilloKey id = new FacturaPlatilloKey();
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @MapsId("facturaId")
     @JoinColumn(name = "facturaid")
     @JsonIgnore
     private Factura factura;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @MapsId("platilloId")
     @JoinColumn(name = "platilloid")
     private Platillo platillo;

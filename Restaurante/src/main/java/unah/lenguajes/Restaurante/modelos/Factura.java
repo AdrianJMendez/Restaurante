@@ -26,11 +26,11 @@ public class Factura
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long facturaId;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne
     @JoinColumn(name = "usuarioid", referencedColumnName = "usuarioid")
     private Usuario usuario;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne
     @JoinColumn(name = "clienteid", referencedColumnName = "clienteid")
     private Cliente cliente;
 
