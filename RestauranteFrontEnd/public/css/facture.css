@@ -36,23 +36,37 @@ body {
 }
 
 .grid-container {
+    background-color: rgba(250, 250, 250, 0.5);
     display: grid;
     justify-content: center;
     grid-template-columns: repeat(2, 1fr);
     gap: 40px;
     height: 70%;
     width: 90%;
+    padding: 2%;
+    border: 1px solid #ddd;
+    border-radius: 20px;
   }
   .grid-item {
+    background-color: rgba(250, 250, 250, 0.35);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;  
     text-align: center;
     box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.2);
+    border: 1px solid #ddd;
+    border-radius: 20px;
   }
-
-  
+  h1 {
+    font-size: 2rem;
+    color: #2C2721;
+    margin-bottom: 10%; /* Espacio adicional debajo del h1 */
+}
+  .grid-item:hover {
+    color: rgba(255, 255, 255, 0.8);
+    box-shadow: 6px 6px 10px rgba(255, 255, 255, 0.8); /* Sombra blanca al hacer clic */
+  }
 
 #myInput {
     width: 50%;
@@ -98,11 +112,7 @@ body {
     height: 80%;
  }
 
- h1 {
-    font-size: 2rem;
-    color: #2C2721;
-    margin-bottom: 10%; /* Espacio adicional debajo del h1 */
-}
+ 
 
 .form-group {
     display: flex;
