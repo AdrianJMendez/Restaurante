@@ -29,8 +29,8 @@ public class Platillo
 
     private String nombre;
 
-    @OneToOne(mappedBy = "platillo", cascade = CascadeType.ALL)
-    private Oferta oferta;
+    //@OneToOne(mappedBy = "platillo")
+    //private Oferta oferta;
 
     //@OneToMany(mappedBy = "platillo", cascade = CascadeType.MERGE)
     //@JsonIgnore

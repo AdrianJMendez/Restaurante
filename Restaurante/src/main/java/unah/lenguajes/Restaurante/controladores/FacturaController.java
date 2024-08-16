@@ -33,6 +33,20 @@ public class FacturaController
     {
         return this.facturaServicio.obtenerTodasFacturas();
     }
+
+    @GetMapping("/obtener/cliente/{clienteId}")
+    public List<Factura> getMethodName(@PathVariable(name = "clienteId") Long clienteId) 
+    {
+        return this.facturaServicio.buscarFacturaPorClienteId(clienteId);
+    }
+
+    @GetMapping("/obtener/{facturaId}")
+    public Factura buscarFacturaPorId(@PathVariable(name = "facturaId") long facturaId) 
+    {
+        return this.facturaServicio.buscarFacturaPorId(facturaId);
+    }
+    
+    
         
     @PostMapping("/crear")
     public Factura crearFactura(@RequestBody Factura nuevaFactura) 

@@ -34,6 +34,10 @@ public class Factura
     @JoinColumn(name = "clienteid", referencedColumnName = "clienteid")
     private Cliente cliente;
 
+    @ManyToOne
+    @JoinColumn(name = "ofertaid", referencedColumnName = "ofertaid")
+    private Oferta oferta;
+
     @OneToMany(mappedBy = "factura", cascade = CascadeType.MERGE)
     private List<FacturaPlatillo> platillos;
 

@@ -17,4 +17,15 @@ public class ClienteServicio
     {
         return this.clienteRepositorio.save(cliente);
     }
+
+    public Cliente buscarClientePorId(Long clienteId)
+    {
+        if(this.clienteRepositorio.existsById(clienteId))
+        {
+            return this.clienteRepositorio.findById(clienteId).get();
+        }
+
+        return null;
+        
+    }
 }

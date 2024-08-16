@@ -5,25 +5,18 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name = "ofertas")
+@Table(name = "mesa")
 @Data
-public class Oferta 
+public class Mesa 
 {
     @Id
-    @Column(name = "ofertaid")
+    @Column(name = "mesaid")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long ofertaId;
+    private long mesaId;
 
-    private double descuento;
-
-    @OneToOne
-    @JoinColumn(name = "platilloid", referencedColumnName = "platilloid")
-    private Platillo platillo;
+    private long sillas;
 }

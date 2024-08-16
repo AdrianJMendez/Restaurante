@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import unah.lenguajes.Restaurante.modelos.Cliente;
 import unah.lenguajes.Restaurante.modelos.Factura;
 import unah.lenguajes.Restaurante.modelos.FacturaPlatillo;
 import unah.lenguajes.Restaurante.repositorios.FacturaPlatilloRepositorio;
@@ -30,8 +31,6 @@ public class FacturaServicio
         return this.facturaRepositorio.findAll();
     }
 
-    //Si en el objeto factura los objetos dentro llevan un ID que no existe, crea el objeto
-    //si el ID ya existe, no crea nada
     public Factura crearFactura(Factura factura)
     {
         Factura nuevaFactura = this.facturaRepositorio.save(factura);
@@ -48,9 +47,20 @@ public class FacturaServicio
     {
         if(this.facturaRepositorio.existsById(facturaId))
         {
-            //Factura facturaActualizar = this.facturaRepositorio.findById(facturaId).get();
-            factura.setFacturaId(facturaId);
-            return this.facturaRepositorio.save(factura);
+            Factura facturaActualizar = this.facturaRepositorio.findById(facturaId).get();
+
+            facturaActualizar.setCliente(factura.getCliente());
+            facturaActualizar.setUsuario(factura.getUsuario());
+            facturaActualizar.setOferta(factura.getOferta());
+            //Falta hacer que funcione bien a la hora de modificar la tabla transaccional
+            //facturaActualizar.setPlatillos(factura.getPlatillos());
+
+            facturaActualizar.setFecha(factura.getFecha());
+            facturaActualizar.setMetodoDePago(factura.getMetodoDePago());
+            facturaActualizar.setImpuesto(factura.getImpuesto());
+            facturaActualizar.setTotal(factura.getTotal());
+
+            return this.facturaRepositorio.save(facturaActualizar);
         }
         return null;
     }
@@ -66,6 +76,28 @@ public class FacturaServicio
             this.facturaRepositorio.deleteById(facturaId);  
             
             return "factura eliminada";
+        }
+        return null;
+    }
+
+    public List<Factura> buscarFacturaPorClienteId(Long clienteId)
+    {
+        Cliente cliente = this.clienteServicio.buscarClientePorId(clienteId);
+
+        if(cliente != null)
+        {
+            return this.facturaRepositorio.findByCliente(cliente);
+        }
+
+        return null;
+        
+    }
+
+    public Factura buscarFacturaPorId(long facturaId)
+    {
+        if(this.facturaRepositorio.existsById(facturaId))
+        {
+            return this.facturaRepositorio.findById(facturaId).get();
         }
         return null;
     }
