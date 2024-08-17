@@ -16,7 +16,7 @@
             </div>
 
             <div class="center-section" >
-            <span>{{ $time }}</span>
+            <span>7:37</span>
             </div>
 
             <div class="right-section">

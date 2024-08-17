@@ -32,7 +32,7 @@ class TimeController extends Controller
         $datetime = $data['datetime'];
         $time = date('H:i:s', strtotime($datetime));  // Formatea la hora como HH:MM
 
-        return view('clientsAdmin', ['time' => $time]);
+        return view('clients', ['time' => $time]);
 
     }
 

@@ -16,23 +16,19 @@
             </div>
             <div id="form">
                 <h1>LOGIN</h1>
-                <form class="form_login">
+                <form class="form_login" method="POST" action="{{ route('login') }}">
+                    @csrf <!-- Token de seguridad de Laravel -->
                     <div class="form-group">
-                        
                         <label for="identificacion">Identificación:</label>
                         <input type="text" id="identificacion" name="identificacion" required>
-
                     </div>
                     <div class="form-group">
-                        
                         <label for="contrasena">Contraseña:</label>
-
                         <input type="password" id="contrasena" name="contrasena" required>
                     </div>
                     <input type="submit" value="Iniciar Sesión">
                 </form>
-
-
             </div>
+
 </body>
 </html>

@@ -12,22 +12,25 @@
 <body>
         <div class="header">
             <div class="left-section">
-                <span>Nombre</span>
+            <span>{{ $nombreUsuario }}</span> <!-- Nombre del usuario -->
             </div>
 
             <div class="center-section" >
-            <span>{{ $time }}</span>
+            <span>7:35</span>
             </div>
 
             <div class="right-section">
-                <span>Administrador</span>
+            <span>{{ $nombrePermiso }}</span> <!-- Nombre del permiso -->
             </div>
         </div>
 
         <div class="grid-container">
         <div class="grid-item">
-            <img src="{{ asset('images/Clientes.png') }}" alt="" class="item-img">
+            <a href="{{ route('clientes.index') }}">
+                <img src="{{ asset('images/Clientes.png') }}" alt="" class="item-img"> 
+            </a>
             Clientes
+            
         </div>
 
         <div class="grid-item">
@@ -41,7 +44,10 @@
         </div>
 
         <div class="grid-item">
-        <img src="{{ asset('images/Facturacion.png') }}" alt="" class="item-img">
+        
+            <a href="{{ route('factura') }}">
+            <img src="{{ asset('images/Facturacion.png') }}" alt="" class="item-img">
+            </a>
             Facturacion
         </div>
 
@@ -55,22 +61,13 @@
             Reservacion
         </div>
 
-        <div class="grid-item">
-        <img src="{{ asset('images/Compras.png') }}" alt="" class="item-img">
-            Compras
-        </div>
 
         <div class="grid-item">
         <img src="{{ asset('images/Clientes.png') }}" alt="" class="item-img">
             Ventas
         </div>
 
-        <div class="grid-item">
-        <img src="{{ asset('images/Clientes.png') }}" alt="" class="item-img">
-            Empleados
-        </div>
-
-        </div>
+        
         
 
 

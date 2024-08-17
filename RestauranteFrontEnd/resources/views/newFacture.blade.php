@@ -16,7 +16,7 @@
             </div>
 
             <div class="center-section" >
-            <span>{{ $time }}</span>
+            <span>7:37</span>
             </div>
 
             <div class="right-section">
@@ -24,16 +24,52 @@
             </div>
         </div>
 
-        <div class="grid-container">
-        <div class="grid-item">
-            
-        </div>
+        <div id="form">
+                <form action="{{ route('clientes.crear') }}" method="POST">
+                    @csrf <!-- Token de seguridad de Laravel -->
 
-        <div class="grid-item">
-           
-        </div>
+                    <div class="grid-container">
 
-       </div>
+                            <div class="grid-item">
+
+                            <div class="form-group">
+                                <label for="identificacion">RTN:</label>
+                                <input class="input-style" type="text" id="identificacion" name="identificacion" required>
+                            </div>
+                            <div class="grid-container">
+                                
+                            </div>
+
+                            </div>
+
+                            <div class="grid-item">
+                                <h2>Metodo de Pago</h2>
+                            <select id="MetododePago" name="MetododePago" class="select-style" required>
+                                
+                                <option value="1">Debito/Credito</option>
+                                <option value="2">Cash</option>
+                            </select>
+                            
+                            <div class="form-group">
+                                <label for="nombre">Fecha:</label>
+                                <input class="input-style" type="text" id="nombre" name="nombre" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="nombre">Total:</label>
+                                <input class="input-style" type="text" id="nombre" name="nombre" readonly value="1000 Lps.">
+                            </div>
+
+
+                            <input type="submit" value="Guardar">
+
+                            </div>
+
+                    </div>
+
+                </form>
+            </div>
+
        
 
 </body>
