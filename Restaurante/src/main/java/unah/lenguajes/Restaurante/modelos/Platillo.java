@@ -29,6 +29,9 @@ public class Platillo
 
     private String nombre;
 
+    @OneToMany(mappedBy = "platillo", cascade = CascadeType.MERGE)
+    private List<InventarioPlatillo> inventarios;
+
     //@OneToOne(mappedBy = "platillo")
     //private Oferta oferta;
 

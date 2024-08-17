@@ -12,7 +12,7 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name = "ofertas")
+@Table(name = "ofertas")       //Nombre de la tabla deberia ser singular
 @Data
 public class Oferta 
 {

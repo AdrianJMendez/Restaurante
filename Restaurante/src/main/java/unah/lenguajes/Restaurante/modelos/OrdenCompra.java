@@ -2,8 +2,6 @@ package unah.lenguajes.Restaurante.modelos;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -17,24 +15,21 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name = "usuario")
+@Table(name = "oredenes_de_compra")     //Cambiar nombre de la tabla
 @Data
-public class Usuario 
+public class OrdenCompra 
 {
     @Id
-    @Column(name = "usuarioid")
+    @Column(name = "ordencompraid")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long usuarioId;
-
-    private String user;
-
-    private String contrasena;
+    private long ordenCompraId;
 
     @ManyToOne
-    @JoinColumn(name = "categoriapermiso", referencedColumnName = "categoriapermisoid")
-    private CategoriaPermiso categoriaPermiso;
-    //Relaciones
-    //@OneToMany(mappedBy = "usuario", cascade = CascadeType.MERGE)
-    //@JsonIgnore
-    //private List<Factura> facturas;
+    @JoinColumn(name = "inventarioid", referencedColumnName = "inventarioid")
+    private Inventario inventario;
+
+    private double cantidad;
+
+    @Column(name = "preciototal")
+    private double precioTotal;
 }

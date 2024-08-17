@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 import unah.lenguajes.Restaurante.modelos.Cliente;
 import unah.lenguajes.Restaurante.modelos.Factura;
 import unah.lenguajes.Restaurante.modelos.FacturaPlatillo;
+import unah.lenguajes.Restaurante.modelos.Inventario;
+import unah.lenguajes.Restaurante.modelos.InventarioPlatillo;
+import unah.lenguajes.Restaurante.modelos.Platillo;
 import unah.lenguajes.Restaurante.repositorios.FacturaPlatilloRepositorio;
 import unah.lenguajes.Restaurante.repositorios.FacturaRepositorio;
 
@@ -24,7 +27,10 @@ public class FacturaServicio
     private ClienteServicio clienteServicio;
 
     @Autowired
-    private UsuarioServicio usuarioServicio;
+    private InventarioServicio inventarioServicio;
+
+    @Autowired
+    private PlatilloServicio platilloServicio;
 
     public List<Factura> obtenerTodasFacturas()
     {
@@ -34,15 +40,35 @@ public class FacturaServicio
     public Factura crearFactura(Factura factura)
     {
         Factura nuevaFactura = this.facturaRepositorio.save(factura);
+
+
         for(FacturaPlatillo facturaPlatillo : nuevaFactura.getPlatillos()) 
         {
             facturaPlatillo.setFactura(nuevaFactura);
 
-            //this.facturaPlatilloServicio.crearFacturaPlatillo(facturaPlatillo);
+            //ForEach interno para consumir el inventario por los platillos a facturar
+
+            //Se busca el platillo para acceder a la cantidad de inventario que gasta
+            Platillo platillo = this.platilloServicio.buscarPlatilloPorId(facturaPlatillo.getPlatillo().getPlatilloId());
+
+            for (InventarioPlatillo inventarioPlatillo : platillo.getInventarios()) 
+            {
+                Inventario inventario = this.inventarioServicio.obtenerInventarioPorId(inventarioPlatillo.getInventario().getInventarioId());
+
+                //La cantidad de platillo que se factura POR la cantidad de inventario que consume ese platillo
+                double inventarioAGastar = facturaPlatillo.getCantidad() * inventarioPlatillo.getCantidad();
+                inventario.setCantidad(inventario.getCantidad() - inventarioAGastar);
+
+                this.inventarioServicio.actualizarInventario(inventario.getInventarioId(), inventario);
+                
+            }
         }
         return this.facturaRepositorio.save(nuevaFactura);
     }
 
+
+    //actualizar la factura no actualiza los cambios en la tabla inventarios
+    //mejor borrar la factura y volverla a crear
     public Factura actualizarFactura(Long facturaId, Factura factura)
     {
         if(this.facturaRepositorio.existsById(facturaId))
@@ -52,8 +78,14 @@ public class FacturaServicio
             facturaActualizar.setCliente(factura.getCliente());
             facturaActualizar.setUsuario(factura.getUsuario());
             facturaActualizar.setOferta(factura.getOferta());
-            //Falta hacer que funcione bien a la hora de modificar la tabla transaccional
-            //facturaActualizar.setPlatillos(factura.getPlatillos());
+
+            this.facturaPlatilloServicio.borrarRegistros(facturaActualizar);
+            facturaActualizar.setPlatillos(factura.getPlatillos());
+
+            for(FacturaPlatillo facturaPlatillo : facturaActualizar.getPlatillos()) 
+            {
+                facturaPlatillo.setFactura(facturaActualizar);
+            }
 
             facturaActualizar.setFecha(factura.getFecha());
             facturaActualizar.setMetodoDePago(factura.getMetodoDePago());
@@ -71,8 +103,33 @@ public class FacturaServicio
         {
             Factura factura = this.facturaRepositorio.findById(facturaId).get();
 
+
+            //Se revierten los cambios en la tabla de inventarios
+            for(FacturaPlatillo facturaPlatillo : factura.getPlatillos()) 
+            {
+                //ForEach interno para revertir los cambios en el inventario por los platillos a facturar
+                //Se busca el platillo para acceder a la cantidad de inventario que gasta
+                Platillo platillo = this.platilloServicio.buscarPlatilloPorId(facturaPlatillo.getPlatillo().getPlatilloId());
+
+                for (InventarioPlatillo inventarioPlatillo : platillo.getInventarios()) 
+                {
+                    Inventario inventario = this.inventarioServicio.obtenerInventarioPorId(inventarioPlatillo.getInventario().getInventarioId());
+
+                    //La cantidad de platillo que se factura POR la cantidad de inventario que consume ese platillo
+                    double inventarioAGastar = facturaPlatillo.getCantidad() * inventarioPlatillo.getCantidad();
+                    inventario.setCantidad(inventario.getCantidad() + inventarioAGastar);
+
+                    this.inventarioServicio.actualizarInventario(inventario.getInventarioId(), inventario);
+                
+                }
+            }
+
+
+
+            //Se borran los registros en la tabla transaccional
             this.facturaPlatilloServicio.borrarRegistros(factura);
 
+            //Se borra el registro de la factura
             this.facturaRepositorio.deleteById(facturaId);  
             
             return "factura eliminada";
