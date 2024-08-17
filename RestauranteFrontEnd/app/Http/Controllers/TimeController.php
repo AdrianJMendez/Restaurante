@@ -20,4 +20,48 @@ class TimeController extends Controller
         return view('mainAdmin', ['time' => $time]);
 
     }
+
+
+    public function showTimeClients()
+    {
+        $client = new Client();
+        $response = $client->request('GET', 'http://worldtimeapi.org/api/timezone/Etc/GMT-6');
+        $data = json_decode($response->getBody()->getContents(), true);
+
+        // Extrae la hora
+        $datetime = $data['datetime'];
+        $time = date('H:i:s', strtotime($datetime));  // Formatea la hora como HH:MM
+
+        return view('clientsAdmin', ['time' => $time]);
+
+    }
+
+    public function showTimeFacture()
+    {
+        $client = new Client();
+        $response = $client->request('GET', 'http://worldtimeapi.org/api/timezone/Etc/GMT-6');
+        $data = json_decode($response->getBody()->getContents(), true);
+
+        // Extrae la hora
+        $datetime = $data['datetime'];
+        $time = date('H:i:s', strtotime($datetime));  // Formatea la hora como HH:MM
+
+        return view('factureAdmin', ['time' => $time]);
+
+    }
+
+    public function showTimeFactureNew()
+    {
+        $client = new Client();
+        $response = $client->request('GET', 'http://worldtimeapi.org/api/timezone/Etc/GMT-6');
+        $data = json_decode($response->getBody()->getContents(), true);
+
+        // Extrae la hora
+        $datetime = $data['datetime'];
+        $time = date('H:i:s', strtotime($datetime));  // Formatea la hora como HH:MM
+
+        return view('newFacture', ['time' => $time]);
+
+    }
 }
+

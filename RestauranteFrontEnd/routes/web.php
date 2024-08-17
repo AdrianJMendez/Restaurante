@@ -12,8 +12,10 @@ Route::get('/login', function () {
     return view('login');
 });
 
-// Route::get('/admin/main', function () {
-//     return view('mainAdmin');
-// });
-
 Route::get('/admin/main', [TimeController::class, 'showTime'])->name('time.show');
+
+Route::get('/admin/clients', [TimeController::class, 'showTimeClients'])->name('time.show');
+
+Route::get('/admin/facture', [TimeController::class, 'showTimeFacture'])->name('time.show');
+
+Route::get('/admin/facture/new', [TimeController::class, 'showTimeFactureNew'])->name('facture.new');
