@@ -109,5 +109,9 @@ public class usuarioServicio {
     
         }
 
+        public usuarioModelo obtenerPorDni(Integer Dni){
+            return this.usuarioRepositorio.findById(Dni).get();
+        }
+
     }
 

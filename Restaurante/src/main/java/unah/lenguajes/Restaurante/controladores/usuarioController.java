@@ -31,6 +31,12 @@ public class usuarioController {
         return this.usuarioServicio.obtenerTodos();
     }
 
+    @GetMapping("/unos/{id}")
+    public usuarioModelo obtenerPorDni(@PathVariable Integer id)
+    {
+        return this.usuarioServicio.obtenerPorDni(id);
+    }
+
     @PostMapping("/crear")
     public usuarioModelo crearUsuario(@RequestBody userDTO nvoUsuario) {
         
