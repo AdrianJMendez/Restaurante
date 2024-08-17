@@ -14,7 +14,7 @@
 - José Roberto Martínez Morales
   - Número de cuenta: 20191031721
 - Miguel
-  - Número de cuenta:
+  - Número de cuenta: 20181033312
 - Viktor
   - Número de cuenta: 20191031721
 
