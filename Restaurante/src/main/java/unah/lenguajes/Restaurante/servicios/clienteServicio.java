@@ -93,4 +93,14 @@ public class clienteServicio {
             return null;
         }
     }
+    public clienteModelo buscarClientePorId(Integer clienteId)
+    {
+        if(this.clienteRepositorio.existsById(clienteId))
+        {
+            return this.clienteRepositorio.findById(clienteId).get();
+        }
+
+        return null;
+        
+    }
 }
