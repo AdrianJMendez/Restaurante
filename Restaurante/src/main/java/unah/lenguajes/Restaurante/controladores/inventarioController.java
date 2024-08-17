@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import unah.lenguajes.Restaurante.modelos.inventarioModelo;
 import unah.lenguajes.Restaurante.servicios.inventarioServicio;
-import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @RestController

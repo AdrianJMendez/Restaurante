@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import unah.lenguajes.Restaurante.modelos.Factura;
 import unah.lenguajes.Restaurante.modelos.FacturaPlatillo;
 import unah.lenguajes.Restaurante.modelos.clienteModelo;
-import unah.lenguajes.Restaurante.repositorios.FacturaPlatilloRepositorio;
+
 import unah.lenguajes.Restaurante.repositorios.FacturaRepositorio;
 
 @Service
@@ -23,9 +23,10 @@ public class FacturaServicio
 
     @Autowired
     private clienteServicio clienteServicio;
-
+    /* 
     @Autowired
     private usuarioServicio usuarioServicio;
+    */
 
     public List<Factura> obtenerTodasFacturas()
     {
