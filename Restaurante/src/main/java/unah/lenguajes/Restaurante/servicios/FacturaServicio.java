@@ -39,6 +39,8 @@ public class FacturaServicio
 
     public Factura crearFactura(Factura factura)
     {
+
+        double subtotalFactura = 0;
         Factura nuevaFactura = this.facturaRepositorio.save(factura);
 
 
@@ -50,6 +52,12 @@ public class FacturaServicio
 
             //Se busca el platillo para acceder a la cantidad de inventario que gasta
             Platillo platillo = this.platilloServicio.buscarPlatilloPorId(facturaPlatillo.getPlatillo().getPlatilloId());
+
+            //Se calcula el precio total por platillo
+            facturaPlatillo.setPrecioTotal(facturaPlatillo.getCantidad() * platillo.getPrecio());
+            //Y se agrega al total de la factura
+            subtotalFactura+= facturaPlatillo.getPrecioTotal();
+
 
             for (InventarioPlatillo inventarioPlatillo : platillo.getInventarios()) 
             {
@@ -63,6 +71,14 @@ public class FacturaServicio
                 
             }
         }
+
+        if(this.facturaRepositorio.countByCliente(nuevaFactura.getCliente()) >= 10)
+        {
+            subtotalFactura = subtotalFactura - (0.10 * subtotalFactura);
+        }
+
+        nuevaFactura.setImpuesto(subtotalFactura * 0.25);
+        nuevaFactura.setTotal(subtotalFactura + nuevaFactura.getImpuesto());
         return this.facturaRepositorio.save(nuevaFactura);
     }
 

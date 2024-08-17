@@ -13,4 +13,6 @@ public interface FacturaRepositorio extends JpaRepository<Factura, Long>
 {
 
     public List<Factura> findByCliente(Cliente cliente);
+
+    public long countByCliente(Cliente cliente);
 }
