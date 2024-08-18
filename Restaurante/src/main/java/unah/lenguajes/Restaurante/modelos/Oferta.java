@@ -5,29 +5,25 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table (name="inventario")
+@Table(name = "ofertas")
 @Data
-public class inventarioModelo {
-
+public class Oferta 
+{
     @Id
+    @Column(name = "ofertaid")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="inventarioid")
-    private int inventarioId ;
+    private long ofertaId;
 
-    private String nombre ;
+    private double descuento;
 
-    private double preciocompra ;
-
-    private double cantidad;
-
-    private String unidadmetrica ;
-
-    @Column(name="minimo_recompra")
-    private int minimo_recompra;
-
-
+    @OneToOne
+    @JoinColumn(name = "platilloid", referencedColumnName = "platilloid")
+    private platilloModelo platillo;
 }
