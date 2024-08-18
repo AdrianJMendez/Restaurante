@@ -12,7 +12,7 @@
 <body>
     <div class="header">
         <div class="left-section">
-            <span>Nombre</span>
+            <span id="nombreUsuario">Nombre</span>
         </div>
 
         <div class="center-section">
@@ -20,7 +20,7 @@
         </div>
 
         <div class="right-section">
-            <span>Gerente</span>
+            <span id="nombrePermiso">Gerente</span>
         </div>
     </div>
 
@@ -79,5 +79,25 @@
             </div>
         </div>
     </div>
+
+
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Recupera los valores almacenados en localStorage
+        const nombreUsuario = localStorage.getItem('nombreUsuario');
+        const nombrePermiso = localStorage.getItem('nombrePermiso');
+
+        // Reemplaza los valores en la vista
+        if (nombreUsuario) {
+            document.getElementById('nombreUsuario').textContent = nombreUsuario;
+        }
+
+        if (nombrePermiso) {
+            document.getElementById('nombrePermiso').textContent = nombrePermiso;
+        }
+    });
+    </script>
+
 </body>
 </html>

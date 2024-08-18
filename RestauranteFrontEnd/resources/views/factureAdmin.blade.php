@@ -10,19 +10,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Lexend+Peta:wght@100..900&family=Playpen+Sans:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
-        <div class="header">
-            <div class="left-section">
-                <span>Nombre</span>
-            </div>
-
-            <div class="center-section" >
-            <span>7:37</span>
-            </div>
-
-            <div class="right-section">
-                <span>Administrador</span>
-            </div>
+    <div class="header">
+        <div class="left-section">
+            <span id="nombreUsuario">Nombre</span>
         </div>
+
+        <div class="center-section">
+            <span>7:37</span>
+        </div>
+
+        <div class="right-section">
+            <span id="nombrePermiso">Gerente</span>
+        </div>
+    </div>
 
         <div class="grid-container">
         <div class="grid-item">
@@ -41,6 +41,21 @@
 
        </div>
        
+       <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Recupera los valores almacenados en localStorage
+            const nombreUsuario = localStorage.getItem('nombreUsuario');
+            const nombrePermiso = localStorage.getItem('nombrePermiso');
 
+            // Reemplaza los valores en la vista
+            if (nombreUsuario) {
+                document.getElementById('nombreUsuario').textContent = nombreUsuario;
+            }
+
+            if (nombrePermiso) {
+                document.getElementById('nombrePermiso').textContent = nombrePermiso;
+            }
+        });
+        </script>
 </body>
 </html>

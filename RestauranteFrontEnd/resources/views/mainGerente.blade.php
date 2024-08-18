@@ -82,6 +82,24 @@
         
 
 
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Tomar el contenido del `span` en la sección izquierda
+                const nombreUsuario = document.querySelector('.left-section span').textContent;
+                
+                // Tomar el contenido del `span` en la sección derecha
+                const nombrePermiso = document.querySelector('.right-section span').textContent;
+
+                // Guardar en `localStorage`
+                if (nombreUsuario && nombrePermiso) {
+                    localStorage.setItem('nombreUsuario', nombreUsuario);
+                    localStorage.setItem('nombrePermiso', nombrePermiso);
+                    console.log("Datos guardados en localStorage:", nombreUsuario, nombrePermiso);
+                } else {
+                    console.error("No se encontró contenido en los spans para guardar en localStorage.");
+                }
+            });
+        </script>
 
 </body>
 </html>
