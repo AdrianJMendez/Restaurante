@@ -87,6 +87,8 @@ MySQL es una excelente opción para proyectos que requieren una base de datos ro
 
 # Guzzle
 
+![logo guzzle](https://raw.githubusercontent.com/guzzle/guzzle/master/.github/logo.png)
+
 Guzzle es una librería PHP que facilita la realización de solicitudes HTTP. Es ampliamente utilizada para interactuar con APIs de terceros, permitiendo el envío de solicitudes `GET`, `POST`, `PUT`, `DELETE`, entre otras, de manera sencilla y manejable. Guzzle soporta características avanzadas como middlewares, manejo de excepciones, y soporte para promesas, lo que lo hace una herramienta poderosa para la creación de clientes HTTP.
 
 En este proyecto, Guzzle se ha utilizado para manejar la comunicación entre el frontend desarrollado en Laravel y un backend independiente basado en Spring Boot, así como para interactuar con APIs externas como la API de World Time.
