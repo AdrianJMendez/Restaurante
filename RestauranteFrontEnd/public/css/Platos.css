@@ -1,0 +1,245 @@
+.platos.main {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(191, 184, 173, 0.898);
+  overflow: hidden;
+}
+.platos .mainContentSection {
+  display: flex;
+  flex-direction: column;
+}
+.platos .flexColumnLayout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 47px 0;
+  margin: 30px 32px 0;
+}
+.platos .contentGroup {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.platos .rectangleBlock1 {
+  position: relative;
+  min-height: 99px;
+  background-color: white;
+  border-radius: 49.5px;
+}
+.platos .flexRowLayout {
+  position: absolute;
+  top: 0;
+  left: 23px;
+  display: flex;
+  justify-content: space-between;
+  gap: 0 10px;
+  width: 1318px;
+  height: 86px;
+}
+.platos .heroImage {
+  width: 89px;
+  min-width: 0;
+  height: 86px;
+}
+.platos .heroTitleName {
+  margin: 24px 0 12px;
+  min-width: 0;
+  font: 800 40px/1.25 "Lexend Peta", Helvetica, Arial, serif;
+  color: black;
+}
+.platos .heroTitleTime {
+  margin: 24px 0 12px;
+  min-width: 0;
+  font: 800 40px/1.25 "Lexend Peta", Helvetica, Arial, serif;
+  color: black;
+}
+.platos .heroTitleRole {
+  margin: 24px 0 12px;
+  min-width: 0;
+  font: 800 40px/1.25 "Lexend Peta", Helvetica, Arial, serif;
+  color: black;
+}
+.platos .flexColumnLayout1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px 0;
+  width: 93.39%;
+}
+.platos .coverImageGroup {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 98.99%;
+}
+.platos .coverImage {
+  position: relative;
+  width: 100%;
+  border-radius: 20px;
+  filter: drop-shadow(10px 10px 5px rgba(0, 0, 0, 0.25));
+}
+.platos .flexRowLayout1 {
+  position: absolute;
+  top: -72px;
+  left: 3px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0 10px;
+  width: 1160px;
+  height: 421px;
+}
+.platos .additionalHeroImage {
+  width: 712px;
+  min-width: 0;
+  border-radius: 75px;
+}
+.platos .heroTitleDishes {
+  display: flex;
+  justify-content: center;
+  min-width: 0;
+  font: 400 48px/1.25 "Krona One", Helvetica, Arial, serif;
+  color: white;
+  text-align: center;
+}
+.platos .dishesGroup {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.platos .flexRowLayout2 {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  gap: 0 10px;
+}
+.platos .dishGroup1 {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 158px;
+  width: 401px;
+  min-width: 0;
+}
+.platos .rectangleBlock {
+  position: absolute;
+  bottom: -162px;
+  left: 16px;
+  width: 370px;
+  height: 440px;
+  background-color: rgba(255, 255, 255, 0.349);
+  border-radius: 20px;
+  box-shadow: 10px 10px 5px 0 rgba(0, 0, 0, 0.25);
+}
+.platos .dishImage1 {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  border-radius: 75px;
+}
+.platos .flexColumnLayout2 {
+  position: absolute;
+  bottom: -10px;
+  left: 47px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px 0;
+  width: 291.5px;
+  height: 65px;
+}
+.platos .mediumTitleDish {
+  display: flex;
+  justify-content: center;
+  margin: 0 0 0 15.5px;
+  font: 400 24px/1.25 "Krona One", Helvetica, Arial, serif;
+  color: black;
+  text-align: center;
+}
+.platos .ingredientsHighlight {
+  display: flex;
+  justify-content: center;
+  width: 140px;
+  font: 400 16px/1.25 "Krona One", Helvetica, Arial, serif;
+  color: black;
+  text-align: center;
+}
+.platos .dishGroup2 {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 158px;
+  width: 401px;
+  min-width: 0;
+}
+.platos .rectangleBlock2 {
+  position: absolute;
+  bottom: -165px;
+  left: 10px;
+  width: 370px;
+  height: 440px;
+  background-color: rgba(255, 255, 255, 0.349);
+  border-radius: 20px;
+  box-shadow: 10px 10px 5px 0 rgba(0, 0, 0, 0.25);
+}
+.platos .dishImage2 {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+}
+.platos .dishGroup3 {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 30px 0 0;
+  width: 370px;
+  min-width: 0;
+}
+.platos .rectangleBlock3 {
+  position: relative;
+  min-width: 0;
+  min-height: 440px;
+  background-color: rgba(255, 255, 255, 0.349);
+  border-radius: 20px;
+  box-shadow: 10px 10px 5px 0 rgba(0, 0, 0, 0.25);
+}
+.platos .mediumTitleAddDish {
+  position: absolute;
+  top: 203px;
+  left: 69px;
+  display: flex;
+  justify-content: center;
+  width: 240px;
+  height: 30px;
+  font: 400 24px/1.25 "Krona One", Helvetica, Arial, serif;
+  color: black;
+  text-align: center;
+}
+.platos .heroImage3 {
+  position: absolute;
+  top: 43px;
+  left: 328px;
+  width: 48px;
+  height: 48px;
+}
+.platos .menuSection {
+  position: relative;
+  width: 1440px;
+  height: 85px;
+  min-height: 85px;
+}
+.platos .hero_title1 {
+  position: absolute;
+  inset: 17px 67px 18px 1197px;
+  width: 176px;
+  height: 50px;
+  font: 800 40px/1.25 "Lexend Peta", Helvetica, Arial, serif;
+  color: #171717;
+}
+.platos .image1 {
+  position: absolute;
+  inset: 0 21px 3px 1348px;
+  width: 71px;
+  height: 82px;
+}
