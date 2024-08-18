@@ -34,6 +34,16 @@ public class inventarioServicio {
             return null ;
         }
     }
+
+    public inventarioModelo obtenerInventarioPorId(Integer inventarioId)
+    {
+        if(this.inventarioRepositorio.existsById(inventarioId))
+        {
+            return this.inventarioRepositorio.findById(inventarioId).get();
+        }
+        return null;
+    }
+
     @Transactional
     public boolean deleteInventarioPorNombre (String nombre)
     {
