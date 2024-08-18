@@ -20,6 +20,15 @@ public class platilloServicio {
         return this.platilloRepositorio.findAll();
     }
 
+    public platilloModelo buscarPlatilloPorId(Integer platilloId)
+    {
+        if(this.platilloRepositorio.existsById(platilloId))
+        {
+            return this.platilloRepositorio.findById(platilloId).get();
+        }
+        return null;
+    }
+
 
     public platilloModelo crearPlatillo(platilloModelo nvoPlatillo)
     {
