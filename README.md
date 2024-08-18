@@ -84,3 +84,68 @@ MySQL es un sistema de gestión de bases de datos relacionales (RDBMS) de códig
 MySQL es una excelente opción para proyectos que requieren una base de datos robusta y escalable.
 
 <br>
+
+# Guzzle
+
+Guzzle es una librería PHP que facilita la realización de solicitudes HTTP. Es ampliamente utilizada para interactuar con APIs de terceros, permitiendo el envío de solicitudes `GET`, `POST`, `PUT`, `DELETE`, entre otras, de manera sencilla y manejable. Guzzle soporta características avanzadas como middlewares, manejo de excepciones, y soporte para promesas, lo que lo hace una herramienta poderosa para la creación de clientes HTTP.
+
+En este proyecto, Guzzle se ha utilizado para manejar la comunicación entre el frontend desarrollado en Laravel y un backend independiente basado en Spring Boot, así como para interactuar con APIs externas como la API de World Time.
+
+## Ejemplo
+
+Uno de los primeros usos de Guzzle en este proyecto fue para manejar la creación de clientes en el backend. Desde el frontend en Laravel, se enviaban solicitudes HTTP `POST` utilizando Guzzle para crear nuevos registros de clientes en la base de datos gestionada por el backend en Spring Boot.
+
+El siguiente fragmento de código ilustra cómo se utilizó Guzzle para enviar los datos del formulario desde Laravel al backend:
+
+
+```php
+public function crearCliente(Request $request)
+{
+    // Valida los datos del formulario
+    $validatedData = $request->validate([
+        'identificacion' => 'required|string',
+        'nombre' => 'required|string',
+        'apellido' => 'required|string',
+    ]);
+
+    // Enviar los datos al backend usando Guzzle
+    $client = new \GuzzleHttp\Client();
+    $response = $client->post('http://localhost:8091/api/restaurante/cliente/crear', [
+        'json' => [
+            'identificacion' => $validatedData['identificacion'],
+            'nombre' => $validatedData['nombre'],
+            'apellido' => $validatedData['apellido'],
+        ],
+    ]);
+
+    // Redirigir a la vista con la lista actualizada de clientes
+    if ($response->getStatusCode() === 200) {
+        return redirect()->route('clientes');
+    } else {
+        return back()->withErrors(['error' => 'Error al crear cliente']);
+    }
+}
+```
+
+Este código muestra cómo Guzzle fue utilizado para enviar una solicitud `POST` al backend y manejar la respuesta en el frontend.
+
+## Consumo de la API de World Time
+
+Otra aplicación clave de Guzzle fue el consumo de la API de World Time, la cual se utilizó para obtener la hora actual de diferentes zonas horarias y mostrarla en varias vistas de la aplicación.
+
+El `TimeController` fue creado para gestionar estas solicitudes. A continuación, se presenta un fragmento del controlador:
+
+```php
+public function showTime()
+{
+    $client = new \GuzzleHttp\Client();
+    $response = $client->request('GET', 'http://worldtimeapi.org/api/timezone/America/Tegucigalpa');
+    $data = json_decode($response->getBody()->getContents(), true);
+
+    // Extrae la hora
+    $datetime = $data['datetime'];
+    $time = date('H:i:s', strtotime($datetime));  // Formatea la hora como HH:MM:SS
+
+    return view('mainAdmin', ['time' => $time]);
+}
+```
