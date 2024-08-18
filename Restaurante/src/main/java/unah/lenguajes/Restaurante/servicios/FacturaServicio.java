@@ -54,7 +54,7 @@ public class FacturaServicio
             //ForEach interno para consumir el inventario por los platillos a facturar
 
             //Se busca el platillo para acceder a la cantidad de inventario que gasta
-            platilloModelo platillo = this.platilloServicio.buscarPlatilloPorId(facturaPlatillo.getPlatillo().getPlatilloid());
+            platilloModelo platillo = this.platilloServicio.buscarPlatilloPorId(facturaPlatillo.getPlatillo().getPlatilloId());
 
             //Se calcula el precio total por platillo
             facturaPlatillo.setPrecioTotal(facturaPlatillo.getCantidad() * platillo.getPrecio());
@@ -128,7 +128,7 @@ public class FacturaServicio
             {
                 //ForEach interno para revertir los cambios en el inventario por los platillos a facturar
                 //Se busca el platillo para acceder a la cantidad de inventario que gasta
-                platilloModelo platillo = this.platilloServicio.buscarPlatilloPorId(facturaPlatillo.getPlatillo().getPlatilloid());
+                platilloModelo platillo = this.platilloServicio.buscarPlatilloPorId(facturaPlatillo.getPlatillo().getPlatilloId());
 
                 for (InventarioPlatillo inventarioPlatillo : platillo.getInventarios()) 
                 {
