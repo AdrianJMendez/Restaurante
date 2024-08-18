@@ -64,13 +64,13 @@ public class FacturaServicio
 
             for (InventarioPlatillo inventarioPlatillo : platillo.getInventarios()) 
             {
-                inventarioModelo inventario = this.inventarioServicio.obtenerInventarioPorId(inventarioPlatillo.getInventario().getInventarioid());
+                inventarioModelo inventario = this.inventarioServicio.obtenerInventarioPorId(inventarioPlatillo.getInventario().getInventarioId());
 
                 //La cantidad de platillo que se factura POR la cantidad de inventario que consume ese platillo
                 double inventarioAGastar = facturaPlatillo.getCantidad() * inventarioPlatillo.getCantidad();
                 inventario.setCantidad(inventario.getCantidad() - inventarioAGastar);
 
-                this.inventarioServicio.actualizarInventario(inventario.getInventarioid(), inventario);
+                this.inventarioServicio.actualizarInventario(inventario.getInventarioId(), inventario);
                 
             }
         }
@@ -132,13 +132,13 @@ public class FacturaServicio
 
                 for (InventarioPlatillo inventarioPlatillo : platillo.getInventarios()) 
                 {
-                    inventarioModelo inventario = this.inventarioServicio.obtenerInventarioPorId(inventarioPlatillo.getInventario().getInventarioid());
+                    inventarioModelo inventario = this.inventarioServicio.obtenerInventarioPorId(inventarioPlatillo.getInventario().getInventarioId());
 
                     //La cantidad de platillo que se factura POR la cantidad de inventario que consume ese platillo
                     double inventarioAGastar = facturaPlatillo.getCantidad() * inventarioPlatillo.getCantidad();
                     inventario.setCantidad(inventario.getCantidad() + inventarioAGastar);
 
-                    this.inventarioServicio.actualizarInventario(inventario.getInventarioid(), inventario);
+                    this.inventarioServicio.actualizarInventario(inventario.getInventarioId(), inventario);
                 
                 }
             }

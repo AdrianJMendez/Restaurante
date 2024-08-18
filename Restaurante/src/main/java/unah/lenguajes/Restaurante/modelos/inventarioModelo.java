@@ -16,7 +16,7 @@ public class inventarioModelo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="inventarioid")
-    private int inventarioid ;
+    private int inventarioId ;
 
     private String nombre ;
 

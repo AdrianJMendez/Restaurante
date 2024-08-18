@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
+import unah.lenguajes.Restaurante.modelos.InventarioPlatillo;
 import unah.lenguajes.Restaurante.modelos.platilloModelo;
 import unah.lenguajes.Restaurante.repositorios.platilloRepositorio;
 
@@ -29,16 +30,36 @@ public class platilloServicio {
         return null;
     }
 
-
-    public platilloModelo crearPlatillo(platilloModelo nvoPlatillo)
+    /* 
+     * 
+     *   public platilloModelo crearPlatillo(platilloModelo nvoPlatillo)
     {
+        platilloModelo nuevoPlatillo = this.platilloRepositorio.save(nvoPlatillo);
         if(!this.platilloRepositorio.existsBynombre(nvoPlatillo.getNombre()))
         {
-            return this.platilloRepositorio.save(nvoPlatillo);
+            for (InventarioPlatillo inventarioPlatillo : nuevoPlatillo.getInventarios()) 
+            {
+            inventarioPlatillo.setPlatillo(nuevoPlatillo);
+            }
+            
+            return this.platilloRepositorio.save(nuevoPlatillo);
         } 
         else {
             return null ;
         }
+    }
+     * 
+    */
+  
+
+    public platilloModelo crearPlatillo(platilloModelo platillo)
+    {
+        platilloModelo nuevoPlatillo = this.platilloRepositorio.save(platillo);
+        for (InventarioPlatillo inventarioPlatillo : nuevoPlatillo.getInventarios()) 
+        {
+            inventarioPlatillo.setPlatillo(nuevoPlatillo);
+        }
+        return this.platilloRepositorio.save(nuevoPlatillo);
     }
 
     public boolean deletePlatillo (Integer platilloID)

@@ -11,8 +11,8 @@ import lombok.Data;
 public class InventarioPlatilloKey implements Serializable
 {
     @Column(name = "inventarioid")
-    private long inventarioId;
+    private Integer inventarioId;
 
     @Column(name = "platilloid")
-    private long platilloId;
+    private Integer platilloId;
 }

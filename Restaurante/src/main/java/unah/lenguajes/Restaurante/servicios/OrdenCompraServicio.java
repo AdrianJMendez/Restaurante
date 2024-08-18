@@ -26,10 +26,10 @@ public class OrdenCompraServicio
 
     public OrdenCompra crearOrdenCompra(OrdenCompra ordenCompra)
     {
-        inventarioModelo inventario = this.inventarioServicio.obtenerInventarioPorId(ordenCompra.getInventario().getInventarioid());
+        inventarioModelo inventario = this.inventarioServicio.obtenerInventarioPorId(ordenCompra.getInventario().getInventarioId());
         inventario.setCantidad(inventario.getCantidad() + ordenCompra.getCantidad());
 
-        this.inventarioServicio.actualizarInventario(inventario.getInventarioid(), inventario);
+        this.inventarioServicio.actualizarInventario(inventario.getInventarioId(), inventario);
 
         return this.ordenCompraRepositorio.save(ordenCompra);
     }
@@ -40,9 +40,9 @@ public class OrdenCompraServicio
         {
             OrdenCompra ordenCompra = this.ordenCompraRepositorio.findById(ordenCompraId).get();
             
-            inventarioModelo inventario = this.inventarioServicio.obtenerInventarioPorId(ordenCompra.getInventario().getInventarioid());
+            inventarioModelo inventario = this.inventarioServicio.obtenerInventarioPorId(ordenCompra.getInventario().getInventarioId());
             inventario.setCantidad(inventario.getCantidad() - ordenCompra.getCantidad());
-            this.inventarioServicio.actualizarInventario(inventario.getInventarioid(), inventario);
+            this.inventarioServicio.actualizarInventario(inventario.getInventarioId(), inventario);
             
             this.ordenCompraRepositorio.deleteById(ordenCompraId);
             return "Orden de compra eliminada, cambios revertidos";
