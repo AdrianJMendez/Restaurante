@@ -43,6 +43,11 @@
                         @foreach($plato['inventarios'] as $inventario)
                             <p> {{ $inventario['inventario']['nombre'] }}</p>
                         @endforeach
+                        
+                                <a href="{{ route('platos.eliminar', ['platilloId' => $plato['platilloId']]) }}">
+                                    <img src="{{ asset('images/delete.png') }}" alt="">
+                                </a>
+                            
                     </div>
                 @endforeach
     </div>

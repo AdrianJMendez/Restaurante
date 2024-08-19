@@ -55,6 +55,8 @@ Route::get('/platillos/agregar', [PlatilloController::class, 'create'])->name('p
 
 Route::post('/platillos/crear', [PlatilloController::class, 'crear'])->name('platos.crear');
 
+Route::get('/platillos/eliminar/{platilloId}', [PlatilloController::class, 'eliminar'])->name('platos.eliminar');
+
 //Factura
 
 Route::get('/factura', [FacturaController::class, 'showFactura'])->name('factura');

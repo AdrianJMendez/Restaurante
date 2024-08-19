@@ -29,37 +29,43 @@
 
         <div class="grid-item">
         <div id="form">
-            <h1>Agregar Nuevo Platillo:</h1>
-            <form action="{{ route('platos.crear') }}" method="POST" enctype="multipart/form-data">
-                @csrf <!-- Token de seguridad de Laravel -->
-                
-                <div class="form-group">
-                    <label for="nombre">Nombre del Platillo:</label>
-                    <input class="input-style" type="text" id="nombre" name="nombre" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="precio">Precio:</label>
-                    <input class="input-style" type="number" id="precio" name="precio" step="0.01" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="ingredientes">Selecciona Ingredientes:</label>
-                    <select id="ingredientes" class="select-style" name="ingredientes[]" multiple required>
-
-                        <option value="1">Tomate</option>
-                        <option value="2">Mozarella</option>
-                        <option value="3">Pasta</option>
-                        <option value="4">Basilisco</option>
-                        <option value="5">Aceite de Oliva</option>
-                
-
-                    </select>
-                </div>
-
-                <input type="submit" value="Guardar">
-            </form>
+    <h1>Agregar Nuevo Platillo:</h1>
+    <form action="{{ route('platos.crear') }}" method="POST" enctype="multipart/form-data">
+        @csrf <!-- Token de seguridad de Laravel -->
+        
+        <div class="form-group">
+            <label for="nombre">Nombre del Platillo:</label>
+            <input class="input-style" type="text" id="nombre" name="nombre" required>
         </div>
+        
+        <div class="form-group">
+            <label for="precio">Precio:</label>
+            <input class="input-style" type="number" id="precio" name="precio" step="0.01" required>
+        </div>
+
+        <div class="form-group">
+            <label for="ingredientes">Selecciona Ingredientes:</label>
+            <select id="ingredientes" class="select-style" name="ingredientes[]" multiple required>
+                <option value="1">Tomate</option>
+                <option value="2">Mozzarella</option>
+                <option value="3">Pasta</option>
+                <option value="4">Basilisco</option>
+                <option value="5">Aceite de Oliva</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="cantidades">Ingresa Cantidades:</label>
+            <input class="input-style" type="number" id="cantidades" name="cantidades[]" step="0.01" placeholder="Cantidad para cada ingrediente seleccionado" required>
+        </div>
+
+        <input type="submit" value="Guardar">
+    </form>
+</div>
+
+
+</div>
+
 
 
         </div>
