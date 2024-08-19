@@ -9,6 +9,8 @@ use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\FacturaController;
 use App\Http\Controllers\PlatilloController;
 use App\Http\Controllers\InventarioController;
+use App\Http\Controllers\ReservaController;
+use App\Http\Controllers\ReporteController;
 use App\Http\Controllers\OrdenesController;
 
 
@@ -75,5 +77,13 @@ Route::get('/factura/eliminar/{facturaId}', [FacturaController::class, 'eliminar
 
 Route::get('/inventario', [InventarioController::class, 'show'])->name('inventario.index');
 
+// Reservas
+
+Route::get('/reservas', [ReservaController::class, 'index']);
+Route::get('/reservas/agregar', [ReservaController::class, 'showCreateForm']);
+Route::post('/reservas', [ReservaController::class, 'create']);
+
+// Reportes
+Route::get('/reportes', [ReporteController::class, 'index']);
 //Ordenes
 Route::get('/ordenes', [OrdenesController::class, 'index'])->name('ordenes.index');
