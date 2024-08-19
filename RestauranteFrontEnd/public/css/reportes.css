@@ -1,0 +1,219 @@
+.reportes.main_section {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(191, 184, 173, 0.898);
+    overflow: hidden;
+  }
+  .reportes .flex_col {
+    display: flex;
+    flex-direction: column;
+    margin: 19px 32px 18px;
+  }
+  .reportes .content_box {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 51px;
+  }
+  .reportes .flex_row {
+    display: flex;
+    justify-content: space-between;
+    gap: 0 10px;
+    margin: 11px 35px 5px 23px;
+  }
+  .reportes .flex_row1 {
+    display: flex;
+    gap: 0 22px;
+    width: 278px;
+    min-width: 0;
+  }
+  .reportes .image {
+    width: 89px;
+    min-width: 0;
+    height: 86px;
+  }
+  .reportes .hero_title_name {
+    margin: 24px 0 12px;
+    min-width: 0;
+    font: 800 40px/1.25 "Lexend Peta", Helvetica, Arial, serif;
+    color: black;
+  }
+  .reportes .hero_title_time {
+    margin: 24px 0 12px;
+    min-width: 0;
+    font: 800 40px/1.25 "Lexend Peta", Helvetica, Arial, serif;
+    color: black;
+  }
+  .reportes .hero_title_role {
+    margin: 14px 0 22px;
+    min-width: 0;
+    font: 800 40px/1.25 "Lexend Peta", Helvetica, Arial, serif;
+    color: black;
+  }
+  .reportes .content_box1 {
+    display: flex;
+    flex-direction: column;
+    margin: 44px 40px 0 39px;
+    background-color: rgba(255, 255, 255, 0.349);
+    border-radius: 20px;
+    box-shadow: 10px 10px 5px 0 rgba(0, 0, 0, 0.25);
+  }
+  .reportes .flex_col1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 359px 0;
+    margin: 23px auto 89px;
+    width: 93.14%;
+  }
+  .reportes .flex_row2 {
+    display: flex;
+    justify-content: space-between;
+    gap: 0 10px;
+    width: 100%;
+  }
+  .reportes .flex_col2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px 0;
+    width: 557px;
+    min-width: 0;
+  }
+  .reportes .hero_title_inventory_orders {
+    width: 100%;
+    font: 800 40px/1.25 "Lexend Peta", Helvetica, Arial, serif;
+    color: black;
+  }
+  .reportes .group {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 96.41%;
+  }
+  .reportes .rect2 {
+    position: relative;
+    min-height: 51px;
+    background-color: rgba(255, 255, 255, 0.349);
+  }
+  .reportes .subtitle_order_count {
+    position: absolute;
+    top: 14px;
+    left: 17px;
+    display: flex;
+    justify-content: center;
+    width: 102px;
+    height: 25px;
+    font: 20px/1.25 "Krona One", Helvetica, Arial, serif;
+    color: black;
+    text-align: center;
+  }
+  .reportes .flex_col3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px 0;
+    width: 566px;
+    min-width: 0;
+  }
+  .reportes .hero_title_billed_orders {
+    width: 100%;
+    font: 800 40px/1.25 "Lexend Peta", Helvetica, Arial, serif;
+    color: black;
+  }
+  .reportes .group1 {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 98.23%;
+  }
+  .reportes .rect3 {
+    position: relative;
+    min-height: 53px;
+    background-color: rgba(255, 255, 255, 0.349);
+  }
+  .reportes .subtitle_billed_order_count {
+    position: absolute;
+    top: 16px;
+    left: 26px;
+    display: flex;
+    justify-content: center;
+    width: 102px;
+    height: 25px;
+    font: 20px/1.25 "Krona One", Helvetica, Arial, serif;
+    color: black;
+    text-align: center;
+  }
+  .reportes .flex_row3 {
+    display: flex;
+    justify-content: space-between;
+    gap: 0 10px;
+    width: 98.51%;
+  }
+  .reportes .flex_col4 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px 0;
+    width: 566px;
+    min-width: 0;
+  }
+  .reportes .hero_title_total_sales {
+    font: 800 40px/1.25 "Lexend Peta", Helvetica, Arial, serif;
+    color: black;
+  }
+  .reportes .rect4 {
+    position: relative;
+    min-height: 51px;
+    background-color: rgba(255, 255, 255, 0.349);
+  }
+  .reportes .subtitle_total_sales_amount {
+    position: absolute;
+    top: 13px;
+    right: 29px;
+    display: flex;
+    justify-content: center;
+    width: 102px;
+    height: 25px;
+    font: 400 20px/1.25 "Krona One", Helvetica, Arial, serif;
+    color: black;
+    text-align: center;
+  }
+  .reportes .hero_title_total_profits {
+    font: 800 40px/1.25 "Lexend Peta", Helvetica, Arial, serif;
+    color: black;
+  }
+  .reportes .subtitle_total_profits_amount {
+    position: absolute;
+    top: 13px;
+    right: 29px;
+    display: flex;
+    justify-content: center;
+    width: 102px;
+    height: 25px;
+    font: 400 20px/1.25 "Krona One", Helvetica, Arial, serif;
+    color: black;
+    text-align: center;
+  }
+  .reportes .group2 {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: 36px 35px 0 auto;
+    width: 176px;
+  }
+  .reportes .hero_title_logout {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    font: 800 40px/1.25 "Lexend Peta", Helvetica, Arial, serif;
+    color: #171717;
+    text-align: center;
+  }
+  .reportes .image1 {
+    position: absolute;
+    top: -17px;
+    right: -46px;
+    width: 71px;
+    height: 82px;
+  }

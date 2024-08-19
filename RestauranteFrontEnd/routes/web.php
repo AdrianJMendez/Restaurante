@@ -9,6 +9,8 @@ use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\FacturaController;
 use App\Http\Controllers\PlatilloController;
 use App\Http\Controllers\InventarioController;
+use App\Http\Controllers\ReservaController;
+use App\Http\Controllers\ReporteController;
 
 
 Route::get('/', function () {
@@ -66,3 +68,12 @@ Route::get('/admin/facture/new', [TimeController::class, 'showTimeFactureNew'])-
 //Inventario
 
 Route::get('/inventario', [InventarioController::class, 'show'])->name('inventario.index');
+
+// Reservas
+
+Route::get('/reservas', [ReservaController::class, 'index']);
+Route::get('/reservas/agregar', [ReservaController::class, 'showCreateForm']);
+Route::post('/reservas', [ReservaController::class, 'create']);
+
+// Reportes
+Route::get('/reportes', [ReporteController::class, 'index']);
