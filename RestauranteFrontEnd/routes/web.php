@@ -9,6 +9,7 @@ use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\FacturaController;
 use App\Http\Controllers\PlatilloController;
 use App\Http\Controllers\InventarioController;
+use App\Http\Controllers\OrdenesController;
 
 
 Route::get('/', function () {
@@ -68,3 +69,6 @@ Route::get('/admin/facture/new', [TimeController::class, 'showTimeFactureNew'])-
 //Inventario
 
 Route::get('/inventario', [InventarioController::class, 'show'])->name('inventario.index');
+
+//Ordenes
+Route::get('/ordenes', [OrdenesController::class, 'index'])->name('ordenes.index');
