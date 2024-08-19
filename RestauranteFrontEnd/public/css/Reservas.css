@@ -1,44 +1,262 @@
-/* public/css/Reservas.css */
-body {
-  font-family: "Lexend Peta", sans-serif;
-  background-color: #f4f4f4;
-  margin: 0;
-  padding: 0;
-}
-
-.reservationSection {
-  padding: 20px;
-}
-
-.tableContainer {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
-
-.table {
-  width: 100px;
-  height: 100px;
+.reserva.main_section {
   position: relative;
-  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(191, 184, 173, 0.898);
+  overflow: hidden;
 }
-
-.table img {
+.reserva .flex_col_container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 29px 0;
+  margin: 33px 27px 78px 26px;
+}
+.reserva .content_group {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 99.21%;
+}
+.reserva .rect_element {
+  position: relative;
+  min-height: 99px;
+  background-color: white;
+  border-radius: 49.5px;
+}
+.reserva .flex_row_container {
+  position: absolute;
+  top: 0;
+  left: 23px;
+  display: flex;
+  justify-content: space-between;
+  gap: 0 10px;
+  width: 1318px;
+  height: 86px;
+}
+.reserva .hero_image_row {
+  display: flex;
+  gap: 0 22px;
+  width: 278px;
+  min-width: 0;
+}
+.reserva .hero_image {
+  width: 89px;
+  min-width: 0;
+  height: 86px;
+}
+.reserva .hero_title_text {
+  margin: 24px 0 12px;
+  min-width: 0;
+  font: 800 40px/1.25 "Lexend Peta", Helvetica, Arial, serif;
+  color: black;
+}
+.reserva .time_display {
+  margin: 24px 0 12px;
+  min-width: 0;
+  font: 800 40px/1.25 "Lexend Peta", Helvetica, Arial, serif;
+  color: black;
+}
+.reserva .admin_title {
+  margin: 24px 0 12px;
+  min-width: 0;
+  font: 800 40px/1.25 "Lexend Peta", Helvetica, Arial, serif;
+  color: black;
+}
+.reserva .secondary_content_group {
+  position: relative;
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  height: 100%;
-  border-radius: 50%;
 }
-
-button {
-  background-color: #28a745;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin: 10px;
+.reserva .secondary_image {
+  position: absolute;
+  right: 248px;
+  bottom: -71px;
+  width: 50px;
+  height: 427px;
 }
-
-button:hover {
-  background-color: #218838;
+.reserva .rect_element_1 {
+  position: relative;
+  min-height: 785px;
+  background-color: rgba(255, 255, 255, 0.349);
+  border-radius: 20px;
+  box-shadow: 10px 10px 5px 0 rgba(0, 0, 0, 0.25);
+}
+.reserva .image_grid {
+  position: absolute;
+  inset: 33px 273px 187px 35px;
+  display: grid;
+  align-content: start;
+  gap: 53px 50px;
+  width: 1079px;
+  height: 565px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.reserva .grid_item_image_1 {
+  grid-row: span 1;
+  grid-column: span 1;
+  width: 150px;
+  height: 150px;
+}
+.reserva .grid_item_image_2 {
+  grid-row: span 1;
+  grid-column: span 1;
+  width: 150px;
+  height: 150px;
+}
+.reserva .grid_item_image_3 {
+  grid-row: span 1;
+  grid-column: span 1;
+  width: 150px;
+  height: 150px;
+}
+.reserva .grid_item_image_4 {
+  grid-row: span 1;
+  grid-column: span 1;
+  width: 150px;
+  height: 150px;
+}
+.reserva .grid_item_image_5 {
+  grid-row: span 1;
+  grid-column: span 1;
+  width: 150px;
+  height: 150px;
+}
+.reserva .grid_item_image_6 {
+  grid-row: span 1;
+  grid-column: span 1;
+  width: 150px;
+  height: 150px;
+}
+.reserva .grid_item_image_7 {
+  grid-row: span 1;
+  grid-column: span 1;
+  width: 150px;
+  height: 150px;
+}
+.reserva .grid_item_image_8 {
+  grid-row: span 1;
+  grid-column: span 1;
+  width: 150px;
+  height: 150px;
+}
+.reserva .grid_item_image_9 {
+  grid-row: span 1;
+  grid-column: span 1;
+  width: 150px;
+  height: 150px;
+}
+.reserva .grid_item_image_10 {
+  grid-row: span 1;
+  grid-column: span 1;
+  width: 150px;
+  height: 150px;
+}
+.reserva .grid_item_image_11 {
+  grid-row: span 1;
+  grid-column: span 1;
+  width: 150px;
+  height: 150px;
+}
+.reserva .grid_item_image_12 {
+  grid-row: span 1;
+  grid-column: span 1;
+  width: 150px;
+  height: 150px;
+}
+.reserva .flex_row_section {
+  position: absolute;
+  top: 20px;
+  right: 76px;
+  display: flex;
+  width: 135px;
+  height: 760px;
+}
+.reserva .flex_col_section_1 {
+  display: flex;
+  flex-direction: column;
+  width: 135px;
+  min-width: 0;
+}
+.reserva .admin_image_1 {
+  margin: 0 0 0 15px;
+  width: 120px;
+  height: 120px;
+}
+.reserva .admin_image_2 {
+  margin: 314px 15px 0 0;
+  width: 120px;
+  height: 120px;
+}
+.reserva .admin_image_3 {
+  margin: 86px 15px 0 0;
+  width: 120px;
+  height: 120px;
+}
+.reserva .flex_row_section_2 {
+  position: absolute;
+  bottom: 4px;
+  left: 71px;
+  display: flex;
+  justify-content: space-between;
+  gap: 0 10px;
+  width: 986px;
+  height: 116px;
+}
+.reserva .admin_image_4 {
+  margin: 0 0 6px;
+  width: 110px;
+  min-width: 0;
+  height: 110px;
+}
+.reserva .group_with_title {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 46px 0 0;
+  width: 819px;
+  min-width: 0;
+}
+.reserva .rect_element_2 {
+  position: relative;
+  min-height: 70px;
+  background-color: black;
+  border-radius: 20px;
+}
+.reserva .add_reservation_title {
+  position: absolute;
+  top: 20px;
+  left: 277px;
+  display: flex;
+  justify-content: center;
+  width: 264px;
+  height: 30px;
+  font: 400 24px/1.25 "Krona One", Helvetica, Arial, serif;
+  color: white;
+  text-align: center;
+}
+.reserva .return_content_group {
+  position: absolute;
+  inset: 949px 48px 25px 1050px;
+  display: flex;
+  flex-direction: column;
+  width: 342px;
+  height: 50px;
+}
+.reserva .return_title {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  font: 800 40px/1.25 "Lexend Peta", Helvetica, Arial, serif;
+  color: #171717;
+  text-align: center;
+}
+.reserva .return_image {
+  position: absolute;
+  top: -3px;
+  right: -21px;
+  width: 71px;
+  height: 78px;
 }

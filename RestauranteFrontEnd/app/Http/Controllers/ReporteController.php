@@ -11,8 +11,13 @@ class ReporteController extends Controller
 {
     public function index(Request $request)
     {
-        $id = $request->input();
-        $ordenesInventario = 'valor';
+        $ordenesController = new OrdenesController();
+        
+        // Llamar al método index para sacar las ordenes
+        $ordenes = $ordenesController->index()->getData()['ordenes'];
+
+        // Contar los IDs
+        $ordenesInventario = count($ordenes);
         $ordenesFacturadas = 'Valor de ordenes facturadas';
         $ventasTotales = 'Valor de ventas totales';
         $gananciasTotales = 'Valor de ganancias totales';
