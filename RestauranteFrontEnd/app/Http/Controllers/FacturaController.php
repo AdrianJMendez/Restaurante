@@ -85,7 +85,9 @@ class FacturaController extends Controller
         // Construcción del array de platillos con sus cantidades
         $platillos = array_map(function($platilloId, $index) use ($request) {
             return [
-                'platilloId' => $platilloId,
+                'platillo' => [
+                    'platilloId' => $platilloId
+                ],
                 'cantidad' => $request->input('cantidad')[$index] // Accede a la cantidad correspondiente
             ];
         }, $request->input('platillos'), array_keys($request->input('platillos')));
@@ -116,14 +118,15 @@ class FacturaController extends Controller
 }
 
 
-    public function eliminar($identificacion)
+     // Método para eliminar una factura
+     public function eliminar($facturaId)
         {
             try {
                 // Envía la solicitud al backend para eliminar el cliente
-                $response = $this->client->delete("http://localhost:8091/api/restaurante/cliente/borrar/dni/{$identificacion}");
+                $response = $this->client->delete("http://localhost:8091/api/factura/borrar/id/{$facturaId}");
 
                 if ($response->getStatusCode() == 200) {
-                    return redirect()->route('clients.index')->with('success', 'Cliente eliminado correctamente');
+                    return redirect()->route('factura.h')->with('success', 'Cliente eliminado correctamente');
                 } else {
                     return back()->withErrors(['error' => 'Error al eliminar cliente']);
                 }
@@ -131,7 +134,6 @@ class FacturaController extends Controller
                 return back()->withErrors(['error' => 'Hubo un problema al conectarse al servidor o al procesar la respuesta']);
             }
         }
-
     
 
 

@@ -69,14 +69,14 @@
         </div>
 
         <div class="grid-item">
-        <img src="{{ asset('images/Clientes.png') }}" alt="" class="item-img">
+        <img src="{{ asset('images/ventas.png') }}" alt="" class="item-img">
             Reportes
         </div>
 
         <div class="grid-item">
 
             <a href="{{ route('usuarios.index') }}">
-                <img src="{{ asset('images/Clientes.png') }}" alt="Empleados" class="item-img">
+                <img src="{{ asset('images/image 7.png') }}" alt="Empleados" class="item-img">
             </a>       
             Empleados
         </div>

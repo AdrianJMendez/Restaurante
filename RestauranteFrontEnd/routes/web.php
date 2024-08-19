@@ -68,6 +68,9 @@ Route::get('/admin/facture/new', [FacturaController::class, 'FactureNew'])->name
 
 Route::post('/factura/crear', [FacturaController::class, 'crear'])->name('factura.crear');
 
+Route::get('/factura/eliminar/{facturaId}', [FacturaController::class, 'eliminar'])->name('factura.eliminar');
+
+
 //Inventario
 
 Route::get('/inventario', [InventarioController::class, 'show'])->name('inventario.index');

@@ -25,13 +25,7 @@
         </div>
 
         <div class="grid-container">
-        <div class="grid-item">
-            <a href="{{ route('clientes.index') }}">
-                <img src="{{ asset('images/Clientes.png') }}" alt="" class="item-img"> 
-            </a>
-            Clientes
-            
-        </div>
+    
 
         <div class="grid-item">
         <a href="{{ route('platos.index') }}">
@@ -41,13 +35,9 @@
             Platos
         </div>
 
-        <div class="grid-item">
-        <img src="{{ asset('images/Clientes.png') }}" alt="" class="item-img">
-            Ordenes
-        </div>
+
 
         <div class="grid-item">
-        
             <a href="{{ route('factura') }}">
             <img src="{{ asset('images/Facturacion.png') }}" alt="" class="item-img">
             </a>
@@ -55,7 +45,11 @@
         </div>
 
         <div class="grid-item">
-        <img src="{{ asset('images/Inventario.png') }}" alt="" class="item-img">
+        
+        <a href="{{ route('inventario.index') }}">
+            <img src="{{ asset('images/Inventario.png') }}" alt="" class="item-img"> 
+        </a>
+                
             Inventario
         </div>
 
@@ -64,13 +58,13 @@
             Reservacion
         </div>
 
-
-        <div class="grid-item">
-        <img src="{{ asset('images/Clientes.png') }}" alt="" class="item-img">
-            Reportes
-        </div>
-
         
+
+
+        </div>
+        
+
+
         <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Tomar el contenido del `span` en la sección izquierda
@@ -93,8 +87,6 @@
             }
         });
     </script>
-
-
 
 </body>
 </html>

@@ -24,30 +24,39 @@
             </div>
         </div>
 
-        <div class="grid-container">
 
         <div class="grid-item">
-        <img src="{{ asset('images/Platos.png') }}" alt="" class="item-img">
+        <a href="{{ route('platos.index') }}">
+            <img src="{{ asset('images/Platos.png') }}" alt="" class="item-img"> 
+        </a>
+        
             Platos
         </div>
 
 
         <div class="grid-item">
-        <a href="{{ route('factura') }}">
+            <a href="{{ route('factura') }}">
             <img src="{{ asset('images/Facturacion.png') }}" alt="" class="item-img">
             </a>
             Facturacion
         </div>
 
         <div class="grid-item">
-        <img src="{{ asset('images/Inventario.png') }}" alt="" class="item-img">
-            Inventario
+        
+        <a href="{{ route('inventario.index') }}">
+            <img src="{{ asset('images/Inventario.png') }}" alt="" class="item-img"> 
+        </a>
+                
+        Inventario
         </div>
 
         <div class="grid-item">
         <img src="{{ asset('images/Reservacion.png') }}" alt="" class="item-img">
             Reservacion
         </div>
+
+        
+
 
         <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -71,8 +80,6 @@
             }
         });
     </script>
-
-
 
 </body>
 </html>
