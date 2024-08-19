@@ -67,7 +67,7 @@
         </div>
         <div class="group2">
           <h1 class="hero_title_logout">Salir</h1>
-          <img class="image1" src="/assets/regresar.svg" alt="alt text" />
+          <img class="image1" src={{ asset('images/regresar.png') }} alt="alt text" />
         </div>
       </div>
     </section>
