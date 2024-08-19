@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import unah.lenguajes.Restaurante.modelos.inventarioModelo;
 import unah.lenguajes.Restaurante.servicios.inventarioServicio;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 
@@ -29,12 +31,13 @@ public class inventarioController {
         {
             return this.inventarioServicio.obtenerTodo();
         }
-        
-        @GetMapping("/prueba")
-        public String prueba() 
+
+        @GetMapping("/nombre/{nombre}")
+        public inventarioModelo buscarInventarioPorNombre(@PathVariable(name = "nombre") String nombre) 
         {
-            return "hola Inventario";
+            return this.inventarioServicio.obtenerInventarioPorNombre(nombre);
         }
+        
 
         @PostMapping("/crear")
         public inventarioModelo crearInventario(@RequestBody inventarioModelo nvoInventario)

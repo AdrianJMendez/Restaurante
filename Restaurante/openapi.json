@@ -1,0 +1,2363 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "API Restaurante",
+    "description": "Clase: IS-513 Seccion 1700  Proyecto Grupo Restaurante. Este API maneja las operaciones de un restaurante._\n\nLinks:\n- [Repositorio del proyecto](https://github.com/AdrianJMendez/Restaurante)",
+    "contact": {
+      "email": "viktor.hernandez@unah.hn"
+    },
+    "version": "1.0.1"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8091"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Factura",
+      "description": "Operaciones sobre facturas"
+    },
+    {
+      "name": "Platillo",
+      "description": "Operaciones sobre platillos"
+    },
+    {
+      "name": "Inventario",
+      "description": "Operaciones sobre usuarios"
+    },
+    {
+      "name": "Cliente",
+      "description": "Operaciones sobre clientes"
+    },
+    {
+      "name": "OrdenCompra",
+      "description": "Operaciones sobre ordenes de compra"
+    },
+    {
+      "name": "Reserva",
+      "description": "Operaciones sobre reservas"
+    },
+    {
+      "name": "Usuario",
+      "description": "Operaciones sobre usuarios"
+    }
+  ],
+  "paths": {
+    "/api/factura/obtener/todos": {
+      "get": {
+        "tags": [
+          "Factura"
+        ],
+        "summary": "Obtener todas las facturas",
+        "description": "Devuelve la lista de las facturas",
+        "responses": {
+          "200": {
+            "description": "Operacion Exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Factura"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/factura/obtener/cliente/{clienteId}": {
+      "get": {
+        "tags": [
+          "Factura"
+        ],
+        "summary": "Buscar la lista de facturas por cliente",
+        "description": "Devuelve una lista",
+        "parameters": [
+          {
+            "name": "clienteId",
+            "in": "path",
+            "description": "Id del cliente por el que se va a buscar la factura",
+            "required": true,
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operacion Exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Factura"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "422": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+    "/api/factura/obtener/{facturaId}": {
+      "get": {
+        "tags": [
+          "Factura"
+        ],
+        "summary": "Buscar la factura por su id",
+        "description": "Devuelve una lista",
+        "parameters": [
+          {
+            "name": "facturaId",
+            "in": "path",
+            "description": "Id de la factura a obtener",
+            "required": true,
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operacion Exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Factura"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "422": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+    "/api/factura/obtener/cliente/nombre/{nombreCliente}": {
+      "get": {
+        "tags": [
+          "Factura"
+        ],
+        "summary": "Buscar la factura por su un nombre de Cliente",
+        "description": "Devuelve una lista",
+        "parameters": [
+          {
+            "name": "nombreCliente",
+            "in": "path",
+            "description": "nombre del cliente",
+            "required": true,
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operacion Exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Factura"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "422": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+    "/api/factura/crear": {
+      "post": {
+        "tags": [
+          "Factura"
+        ],
+        "summary": "Crear una factura",
+        "description": "Crear una factura",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "usuarioId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "Id del usuario que genera la factura",
+                    "example": 1
+                  },
+                  "clienteId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "Id del cliente que va a pagar",
+                    "example": 1
+                  },
+                  "fecha": {
+                    "type": "string",
+                    "description": "Fecha y hora de la emision de la factura",
+                    "example": "2021-12-31 18:30"
+                  },
+                  "metodoDePago": {
+                    "type": "string",
+                    "description": "Metodo con el que el cliente efectuo el pago",
+                    "example": "efectivo"
+                  },
+                  "platillos": {
+                    "type": "array",
+                    "description": "Platillos que lleva la orden facturada",
+                    "items": {
+                      "oneOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "platilloId": {
+                              "type": "string",
+                              "example": 1
+                            }
+                          }
+                        },
+                        {
+                          "type": "integer",
+                          "example": "cantidad=2"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Operacion exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Factura"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "422": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+    "/api/factura/borrar/{facturaId}": {
+      "delete": {
+        "tags": [
+          "Factura"
+        ],
+        "summary": "Borra la factura por su id",
+        "description": "Borra una factura",
+        "parameters": [
+          {
+            "name": "facturaId",
+            "in": "path",
+            "description": "Id de la factura que se va a eliminar",
+            "required": true,
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operacion Exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Respuesta": {
+                      "type": "string",
+                      "example": "Factura eliminada"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "422": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+    "/api/ordencompra/obtener/todos": {
+      "get": {
+        "tags": [
+          "OrdenCompra"
+        ],
+        "summary": "Obtener todas las ordenes de compra",
+        "description": "Devuelve la lista de las ordenes de compra",
+        "responses": {
+          "200": {
+            "description": "Operacion Exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OrdenCompra"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ordencompra/crear": {
+      "post": {
+        "tags": [
+          "OrdenCompra"
+        ],
+        "summary": "Crear una orden de compra",
+        "description": "Crear una orden de compra",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "inventario": {
+                    "type": "object",
+                    "properties": {
+                      "inventarioId": {
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 2
+                      }
+                    }
+                  },
+                  "cantidad": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "Cantidad de items del inventario que se van a ordenar",
+                    "example": 50
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Operacion exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrdenCompra"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "422": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+    "/api/ordencompra/borrar/{ordenCompraId}": {
+      "delete": {
+        "tags": [
+          "OrdenCompra"
+        ],
+        "summary": "Borra la orden de compra por su id",
+        "description": "Borra una orden de compra",
+        "parameters": [
+          {
+            "name": "ordenCompraId",
+            "in": "path",
+            "description": "Id de la factura que se va a eliminar",
+            "required": true,
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operacion Exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Respuesta": {
+                      "type": "string",
+                      "example": "Orden de compra eliminada"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "422": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+    "/api/restaurante/platillo/todos": {
+      "get": {
+        "tags": [
+          "Platillo"
+        ],
+        "summary": "Obtener todos los platillos",
+        "description": "Devuelve la lista de los platillos",
+        "responses": {
+          "200": {
+            "description": "Operacion Exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Platillo"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/restaurante/platillo/crear": {
+      "post": {
+        "tags": [
+          "Platillo"
+        ],
+        "summary": "Crear un platillo",
+        "description": "Crear un platillo",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nombre": {
+                    "type": "string",
+                    "description": "Nombre del platillo",
+                    "example": "Hamburguesa"
+                  },
+                  "precio": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "Precio de venta del platillo",
+                    "example": 100
+                  },
+                  "imagen": {
+                    "type": "string",
+                    "description": "URL de la imagen del platillo",
+                    "example": "bistec.jpg"
+                  },
+                  "inventarios": {
+                    "type": "array",
+                    "description": "Inventarios que lleva el platillo",
+                    "items": {
+                      "oneOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "inventarioId": {
+                              "type": "string",
+                              "example": 1
+                            }
+                          }
+                        },
+                        {
+                          "type": "integer",
+                          "example": "cantidad=2"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Operacion exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Platillo"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "422": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+    "/api/restaurante/platillo/borrar/id/{platilloId}": {
+      "delete": {
+        "tags": [
+          "Platillo"
+        ],
+        "summary": "Borra el platillo por su id",
+        "description": "Borra un platillo",
+        "parameters": [
+          {
+            "name": "platilloId",
+            "in": "path",
+            "description": "Id del platillo a eliminar",
+            "required": true,
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operacion Exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Respuesta": {
+                      "type": "string",
+                      "example": "Platillo eliminada"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "422": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+    "/api/restaurante/platillo/borrar/nombre/{nombre}": {
+      "delete": {
+        "tags": [
+          "Platillo"
+        ],
+        "summary": "Borra el platillo por su nombre",
+        "description": "Borra un platillo",
+        "parameters": [
+          {
+            "name": "nombre",
+            "in": "path",
+            "description": "Nombre del platillo a eliminar",
+            "required": true,
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operacion Exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Respuesta": {
+                      "type": "string",
+                      "example": "Platillo eliminada"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "422": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+    "/api/restaurante/platillo/actualizar/id/{platilloId}": {
+      "put": {
+        "tags": [
+          "Platillo"
+        ],
+        "summary": "Actulizar un platillo",
+        "description": "Actualizar un platillo",
+        "parameters": [
+          {
+            "name": "platilloId",
+            "in": "path",
+            "description": "Id del platillo a eliminar",
+            "required": true,
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nombre": {
+                    "type": "string",
+                    "description": "Nombre del platillo",
+                    "example": "Hamburguesa"
+                  },
+                  "precio": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "Precio de venta del platillo",
+                    "example": 100
+                  },
+                  "imagen": {
+                    "type": "string",
+                    "description": "URL de la imagen del platillo",
+                    "example": "bistec.jpg"
+                  },
+                  "inventarios": {
+                    "type": "array",
+                    "description": "Inventarios que lleva el platillo",
+                    "items": {
+                      "oneOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "inventarioId": {
+                              "type": "string",
+                              "example": 1
+                            }
+                          }
+                        },
+                        {
+                          "type": "integer",
+                          "example": "cantidad=2"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Operacion exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Platillo"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "422": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+    "/api/restaurante/platillo/actualizar/nombre/{nombre}": {
+      "put": {
+        "tags": [
+          "Platillo"
+        ],
+        "summary": "Actulizar un platillo",
+        "description": "Actualizar un platillo",
+        "parameters": [
+          {
+            "name": "nombre",
+            "in": "path",
+            "description": "Nombre del platillo a eliminar",
+            "required": true,
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nombre": {
+                    "type": "string",
+                    "description": "Nombre del platillo",
+                    "example": "Hamburguesa"
+                  },
+                  "precio": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "Precio de venta del platillo",
+                    "example": 100
+                  },
+                  "imagen": {
+                    "type": "string",
+                    "description": "URL de la imagen del platillo",
+                    "example": "bistec.jpg"
+                  },
+                  "inventarios": {
+                    "type": "array",
+                    "description": "Inventarios que lleva el platillo",
+                    "items": {
+                      "oneOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "inventarioId": {
+                              "type": "string",
+                              "example": 1
+                            }
+                          }
+                        },
+                        {
+                          "type": "integer",
+                          "example": "cantidad=2"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Operacion exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Platillo"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "422": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+    "/api/restaurante/inventario/todos": {
+      "get": {
+        "tags": [
+          "Inventario"
+        ],
+        "summary": "Obtener todos los inventarios",
+        "description": "Devuelve la lista de los inventarios",
+        "responses": {
+          "200": {
+            "description": "Operacion Exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Inventario"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/restaurante/inventario/nombre/{nombre}": {
+      "get": {
+        "tags": [
+          "Inventario"
+        ],
+        "summary": "Buscar el inventario por su nombre",
+        "description": "Devuelve un inventario",
+        "parameters": [
+          {
+            "name": "nombre",
+            "in": "path",
+            "description": "nombre del inventario",
+            "required": true,
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operacion Exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Inventario"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "422": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+    "/api/restaurante/inventario/crear": {
+      "post": {
+        "tags": [
+          "Inventario"
+        ],
+        "summary": "Crear un registro del inventario",
+        "description": "Crear un inventario",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nombre": {
+                    "type": "string",
+                    "description": "Nombre del item del inventario",
+                    "example": "Arroz"
+                  },
+                  "precio": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "Precio de compra del platillo",
+                    "example": 15
+                  },
+                  "cantidad": {
+                    "type": "number",
+                    "description": "Cantidad del item que hay en existencia",
+                    "example": 20
+                  },
+                  "unidadMetrica": {
+                    "type": "string",
+                    "description": "Unidad metrica",
+                    "example": "libra"
+                  },
+                  "minimoRecompra": {
+                    "type": "number",
+                    "description": "Cantidad minima del item",
+                    "example": 10
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Operacion exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Inventario"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "422": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+    "/api/restaurante/inventario/borrar/nombre/{nombre}": {
+      "delete": {
+        "tags": [
+          "Inventario"
+        ],
+        "summary": "Borra el inventario por su nombre",
+        "description": "Borra un inventario",
+        "parameters": [
+          {
+            "name": "nombre",
+            "in": "path",
+            "description": "Nombre del inventario a eliminar",
+            "required": true,
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operacion Exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Respuesta": {
+                      "type": "string",
+                      "example": "Inventario eliminado"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "422": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+    "/api/restaurante/inventario/borrar/id/{inventarioId}": {
+      "delete": {
+        "tags": [
+          "Inventario"
+        ],
+        "summary": "Borra el inventario por su id",
+        "description": "Borra un inventario",
+        "parameters": [
+          {
+            "name": "inventarioId",
+            "in": "path",
+            "description": "Id del inventario a eliminar",
+            "required": true,
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operacion Exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Respuesta": {
+                      "type": "string",
+                      "example": "Inventario eliminado"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "422": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+    "/api/restaurante/inventario/actualizar/id/{inventarioId}": {
+      "put": {
+        "tags": [
+          "Inventario"
+        ],
+        "summary": "Actulizar un inventario",
+        "description": "Actualizar un inventario",
+        "parameters": [
+          {
+            "name": "inventarioId",
+            "in": "path",
+            "description": "Id del inventario a actualizar",
+            "required": true,
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nombre": {
+                    "type": "string",
+                    "description": "Nombre del item del inventario",
+                    "example": "Arroz"
+                  },
+                  "precio": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "Precio de compra del platillo",
+                    "example": 15
+                  },
+                  "cantidad": {
+                    "type": "number",
+                    "description": "Cantidad del item que hay en existencia",
+                    "example": 20
+                  },
+                  "unidadMetrica": {
+                    "type": "string",
+                    "description": "Unidad metrica",
+                    "example": "libra"
+                  },
+                  "minimoRecompra": {
+                    "type": "number",
+                    "description": "Cantidad minima del item",
+                    "example": 10
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Operacion exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Platillo"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "422": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+    "/api/restaurante/inventario/actualizar/nombre/{nombre}": {
+      "put": {
+        "tags": [
+          "Inventario"
+        ],
+        "summary": "Actulizar un inventario",
+        "description": "Actualizar un inventario",
+        "parameters": [
+          {
+            "name": "nombre",
+            "in": "path",
+            "description": "Nombre del inventario a actualizar",
+            "required": true,
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nombre": {
+                    "type": "string",
+                    "description": "Nombre del item del inventario",
+                    "example": "Arroz"
+                  },
+                  "precio": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "Precio de compra del platillo",
+                    "example": 15
+                  },
+                  "cantidad": {
+                    "type": "number",
+                    "description": "Cantidad del item que hay en existencia",
+                    "example": 20
+                  },
+                  "unidadMetrica": {
+                    "type": "string",
+                    "description": "Unidad metrica",
+                    "example": "libra"
+                  },
+                  "minimoRecompra": {
+                    "type": "number",
+                    "description": "Cantidad minima del item",
+                    "example": 10
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Operacion exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Inventario"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "422": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+    "/api/restaurante/cliente/todos": {
+      "get": {
+        "tags": [
+          "Cliente"
+        ],
+        "summary": "Obtener todos los clientes",
+        "description": "Devuelve la lista de los clientes",
+        "responses": {
+          "200": {
+            "description": "Operacion Exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Cliente"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/restaurante/cliente/obtener/identifiacion/{identificacion}": {
+      "get": {
+        "tags": [
+          "Cliente"
+        ],
+        "summary": "Buscar el cliente por su identificion",
+        "description": "Devuelve un cliente",
+        "parameters": [
+          {
+            "name": "identificacion",
+            "in": "path",
+            "description": "RTN del cliente",
+            "required": true,
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operacion Exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Cliente"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "422": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+    "/api/restaurante/cliente/crear": {
+      "post": {
+        "tags": [
+          "Cliente"
+        ],
+        "summary": "Crear un cliente",
+        "description": "Crear un cliente",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nombre": {
+                    "type": "string",
+                    "description": "Nombre del cliente",
+                    "example": "Jose"
+                  },
+                  "apellido": {
+                    "type": "string",
+                    "description": "Apellido del cliente",
+                    "example": "Martinez"
+                  },
+                  "identificacion": {
+                    "type": "string",
+                    "description": "RTN del cliente",
+                    "example": 801198309594
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Operacion exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Cliente"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "422": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+    "/api/restaurante/cliente/borrar/id/{clienteId}": {
+      "delete": {
+        "tags": [
+          "Cliente"
+        ],
+        "summary": "Borra el cliente por su id",
+        "description": "Borra un cliente",
+        "parameters": [
+          {
+            "name": "clienteId",
+            "in": "path",
+            "description": "Id del cliente a eliminar",
+            "required": true,
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operacion Exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Respuesta": {
+                      "type": "string",
+                      "example": "Cliente eliminado"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "422": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+    "/api/restaurante/cliente/borrar/dni/{dni}": {
+      "delete": {
+        "tags": [
+          "Cliente"
+        ],
+        "summary": "Borra el inventario por su nombre",
+        "description": "Borra un inventario",
+        "parameters": [
+          {
+            "name": "dni",
+            "in": "path",
+            "description": "DNI del cliente a eliminar",
+            "required": true,
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operacion Exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Respuesta": {
+                      "type": "string",
+                      "example": "Cliente eliminado"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "422": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+    "/api/restaurante/cliente/actualizar/id/{clienteId}": {
+      "put": {
+        "tags": [
+          "Cliente"
+        ],
+        "summary": "Actulizar un cliente",
+        "description": "Actualizar un cliente",
+        "parameters": [
+          {
+            "name": "clienteId",
+            "in": "path",
+            "description": "Id del inventario a actualizar",
+            "required": true,
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nombre": {
+                    "type": "string",
+                    "description": "Nombre del cliente",
+                    "example": "Miguel"
+                  },
+                  "apellido": {
+                    "type": "string",
+                    "description": "Apellido del cliente",
+                    "example": "Laitano"
+                  },
+                  "identificacion": {
+                    "type": "string",
+                    "description": "DNI del cliente",
+                    "example": "0715198502912"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Operacion exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Cliente"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "422": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+    "/api/restaurante/cliente/actualizar/dni/{dni}": {
+      "put": {
+        "tags": [
+          "Cliente"
+        ],
+        "summary": "Actulizar un cliente",
+        "description": "Actualizar un cliente",
+        "parameters": [
+          {
+            "name": "dni",
+            "in": "path",
+            "description": "Nombre del cliente a actualizar",
+            "required": true,
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nombre": {
+                    "type": "string",
+                    "description": "Nombre del cliente",
+                    "example": "Miguel"
+                  },
+                  "apellido": {
+                    "type": "string",
+                    "description": "Apellido del cliente",
+                    "example": "Laitano"
+                  },
+                  "identificacion": {
+                    "type": "string",
+                    "description": "DNI del cliente",
+                    "example": "0715198502912"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Operacion exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Cliente"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "422": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+    "/api/reserva/obtener/todos": {
+      "get": {
+        "tags": [
+          "Reserva"
+        ],
+        "summary": "Obtener todas las reservas",
+        "description": "Devuelve la lista de las reservas",
+        "responses": {
+          "200": {
+            "description": "Operacion Exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Reserva"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/reserva/obtener/cliente/{clienteId}": {
+      "get": {
+        "tags": [
+          "Reserva"
+        ],
+        "summary": "Obtener todas las reservas por un cliente",
+        "description": "Devuelve la lista de las reservas",
+        "parameters": [
+          {
+            "name": "clienteId",
+            "in": "path",
+            "description": "ID del cliente a buscar sus reservas",
+            "required": true,
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operacion Exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Reserva"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/reserva/obtener/{reservaId}": {
+      "get": {
+        "tags": [
+          "Reserva"
+        ],
+        "summary": "Obtener una reserva por su ID",
+        "description": "Devuelve la reserva",
+        "parameters": [
+          {
+            "name": "reservaId",
+            "in": "path",
+            "description": "ID de la reserva",
+            "required": true,
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operacion Exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Reserva"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/reserva/crear": {
+      "post": {
+        "tags": [
+          "Reserva"
+        ],
+        "summary": "Crear una reserva",
+        "description": "Crear una reserva",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "usuarioId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "Id del usuario que genera la reserva",
+                    "example": 1
+                  },
+                  "clienteId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "Id del cliente que esta reservando",
+                    "example": 1
+                  },
+                  "fecha": {
+                    "type": "string",
+                    "description": "Fecha y hora de la reserva",
+                    "example": "2021-12-31 18:30"
+                  },
+                  "metodoDePago": {
+                    "type": "string",
+                    "description": "Metodo con el que el cliente efectuo el pago",
+                    "example": "efectivo"
+                  },
+                  "cantidadDePersonas": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "Cantidad de personas",
+                    "example": 8
+                  },
+                  "descripcion": {
+                    "type": "string",
+                    "description": "Descripcion sobre la reserva",
+                    "example": "Cumpleaños"
+                  },
+                  "mesas": {
+                    "type": "array",
+                    "description": "Platillos que lleva la orden facturada",
+                    "items": {
+                      "$ref": "#/components/schemas/Mesa"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Operacion exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Reserva"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "422": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+    "/api/reserva/borrar/{reservaId}": {
+      "delete": {
+        "tags": [
+          "Reserva"
+        ],
+        "summary": "Borra la reserva por su id",
+        "description": "Borra una reserva",
+        "parameters": [
+          {
+            "name": "reservaId",
+            "in": "path",
+            "description": "Id de la reserva a eliminar",
+            "required": true,
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operacion Exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Respuesta": {
+                      "type": "string",
+                      "example": "Reserva eliminada"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "422": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+    "/api/restaurante/usuario/todos": {
+      "get": {
+        "tags": [
+          "Usuario"
+        ],
+        "summary": "Obtener todas los usuarios",
+        "description": "Devuelve la lista de los usuarios",
+        "responses": {
+          "200": {
+            "description": "Operacion Exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Usuario"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/restaurante/usuario/obtener/user/{user}": {
+      "get": {
+        "tags": [
+          "Usuario"
+        ],
+        "summary": "Buscar el usuario por su nombre",
+        "description": "Devuelve un usuario",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "path",
+            "description": "Nombre del usuario",
+            "required": true,
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operacion Exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Usuario"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "422": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+    "/api/restaurante/usuario/crear": {
+      "post": {
+        "tags": [
+          "Usuario"
+        ],
+        "summary": "Crear un usuario",
+        "description": "Crear un usuario",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user": {
+                    "type": "string",
+                    "description": "Nombre del usuario",
+                    "example": "Jose"
+                  },
+                  "categorioPermiso": {
+                    "type": "object",
+                    "properties": {
+                      "categoriaPermiso": {
+                        "type": "integer",
+                        "description": "Categoria de permiso",
+                        "example": 1
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Operacion exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Usuario"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "422": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+    "/api/restaurante/usuario/borrar/id/{usuarioId}": {
+      "delete": {
+        "tags": [
+          "Usuario"
+        ],
+        "summary": "Borra el usuario por su id",
+        "description": "Borra un usuario",
+        "parameters": [
+          {
+            "name": "usuarioId",
+            "in": "path",
+            "description": "Id del usuario a eliminar",
+            "required": true,
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operacion Exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Respuesta": {
+                      "type": "string",
+                      "example": "Usuario eliminado"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "422": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+    "/api/restaurante/usuario/borrar/user/{user}": {
+      "delete": {
+        "tags": [
+          "Usuario"
+        ],
+        "summary": "Borra el usuario por su nombre",
+        "description": "Borra un usuario",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "path",
+            "description": "Nombre del usuario a eliminar",
+            "required": true,
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operacion Exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Respuesta": {
+                      "type": "string",
+                      "example": "Usuario eliminado"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "422": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+    "/api/restaurante/usuario/actualizar/id/{usuarioId}": {
+      "put": {
+        "tags": [
+          "Usuario"
+        ],
+        "summary": "Actulizar un usuario",
+        "description": "Actualizar un usuario",
+        "parameters": [
+          {
+            "name": "usuarioId",
+            "in": "path",
+            "description": "Id del usuario a actualizar",
+            "required": true,
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user": {
+                    "type": "string",
+                    "description": "Nombre del usuario",
+                    "example": "Jose"
+                  },
+                  "categorioPermiso": {
+                    "type": "object",
+                    "properties": {
+                      "categoriaPermiso": {
+                        "type": "integer",
+                        "description": "Categoria de permiso",
+                        "example": 1
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Operacion exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Usuario"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "422": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Cliente": {
+        "type": "object",
+        "properties": {
+          "clienteId": {
+            "type": "integer",
+            "description": "Generado por la base de datos",
+            "format": "int64",
+            "example": 1
+          },
+          "nombre": {
+            "type": "string",
+            "description": "Primer nombre del cliente",
+            "example": "Viktor"
+          },
+          "apellido": {
+            "type": "string",
+            "description": "Primer apellido del cliente",
+            "example": "Hernandez"
+          },
+          "identificacion": {
+            "type": "string",
+            "description": "RTN del cliente",
+            "example": 715200500005
+          }
+        }
+      },
+      "Usuario": {
+        "type": "object",
+        "properties": {
+          "usuarioId": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Generado por la base de datos",
+            "example": 1
+          },
+          "user": {
+            "type": "string",
+            "description": "Nombre del usuario",
+            "example": "Adrian"
+          },
+          "categorioPermiso": {
+            "$ref": "#/components/schemas/CategoriaPermiso"
+          }
+        }
+      },
+      "CategoriaPermiso": {
+        "type": "object",
+        "properties": {
+          "categoriaPermisoId": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Solo hay 3 tipos de categorias",
+            "example": 1
+          },
+          "nombre": {
+            "type": "string",
+            "description": "Nombre de la categoria",
+            "example": "Gerente"
+          },
+          "descripcion": {
+            "type": "string",
+            "example": "Puede crear nuevos usuarios"
+          }
+        }
+      },
+      "Inventario": {
+        "type": "object",
+        "properties": {
+          "inventarioId": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Generado por la base de datos",
+            "example": 1
+          },
+          "nombre": {
+            "type": "string",
+            "description": "Nombre del item del inventario",
+            "example": "arroz"
+          },
+          "precioCompra": {
+            "type": "number",
+            "description": "Precio de compra del item por unidad",
+            "example": 10
+          },
+          "cantidad": {
+            "type": "number",
+            "description": "Cantidad del item que se encuentra en existencia",
+            "example": 10
+          },
+          "unidadMetrica": {
+            "type": "string",
+            "description": "Unidad con la que se mide el item",
+            "example": "libra"
+          },
+          "minimoRecompra": {
+            "type": "number",
+            "description": "Cantidad minima del item que debe haber en existencia",
+            "example": 5
+          }
+        }
+      },
+      "Platillo": {
+        "type": "object",
+        "properties": {
+          "platilloId": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Generado por la base de datos",
+            "example": 1
+          },
+          "nombre": {
+            "type": "string",
+            "description": "Nombre del platillo",
+            "example": "Bistec"
+          },
+          "precio": {
+            "type": "number",
+            "description": "Precio de venta del platillo",
+            "example": 100
+          },
+          "imagen": {
+            "type": "string",
+            "description": "URL de la imagen a mostrar en el frontend del platillo",
+            "example": "bisctec.jpg"
+          },
+          "inventarios": {
+            "type": "array",
+            "description": "Items del inventario que lleva la receta del platillo",
+            "items": {
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/Inventario"
+                },
+                {
+                  "type": "integer",
+                  "description": "Cantidad del item del inventario que lleva el platillo",
+                  "example": "cantidad = 2"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "Factura": {
+        "type": "object",
+        "properties": {
+          "facturaId": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Generado por la base de datos",
+            "example": 1
+          },
+          "usuario": {
+            "$ref": "#/components/schemas/Usuario"
+          },
+          "cliente": {
+            "$ref": "#/components/schemas/Cliente"
+          },
+          "fecha": {
+            "type": "string",
+            "description": "Fecha y hora de la emision de la factura",
+            "example": "2021-12-31 18:30"
+          },
+          "metodoDePago": {
+            "type": "string",
+            "description": "Metodo con el que el cliente efectuo el pago",
+            "example": "efectivo"
+          },
+          "impuesto": {
+            "type": "number",
+            "description": "Impuesto (25% del subtotal) Generado por la base de datos",
+            "example": 150
+          },
+          "total": {
+            "type": "number",
+            "description": "Total a pagar(incluye impuesto) Generado por la base de datos",
+            "example": 750
+          },
+          "platillos": {
+            "type": "array",
+            "description": "Platillos que lleva la orden facturada",
+            "items": {
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/Platillo"
+                },
+                {
+                  "type": "integer",
+                  "description": "Cantidad del item del inventario que lleva el platillo",
+                  "example": "cantidad = 2"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "Mesa": {
+        "type": "object",
+        "properties": {
+          "mesaId": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Numero de la mesa",
+            "example": 11
+          },
+          "sillas": {
+            "type": "integer",
+            "format": "int64",
+            "example": 4
+          }
+        }
+      },
+      "OrdenCompra": {
+        "type": "object",
+        "properties": {
+          "ordenCompraId": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Generado por la base de datos",
+            "example": 1
+          },
+          "inventario": {
+            "$ref": "#/components/schemas/Inventario"
+          },
+          "cantidad": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Cantidad del item del inventario que se esta ordenando",
+            "example": 2
+          },
+          "precioTotal": {
+            "type": "number",
+            "description": "Total a gastar en la compra. Generado por la base de datos",
+            "example": 100
+          }
+        }
+      },
+      "Reserva": {
+        "type": "object",
+        "properties": {
+          "reservaId": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Generado por la base de datos",
+            "example": 1
+          },
+          "usuario": {
+            "$ref": "#/components/schemas/Usuario"
+          },
+          "cliente": {
+            "$ref": "#/components/schemas/Cliente"
+          },
+          "fecha": {
+            "type": "string",
+            "description": "Fecha y hora de la reserva",
+            "example": "2021-12-31 18:30"
+          },
+          "metodoDePago": {
+            "type": "string",
+            "description": "Metodo con el que el cliente efectuo el pago",
+            "example": "efectivo"
+          },
+          "cantidadDePersonas": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Cantidad de personas para las que se hace la reserva",
+            "example": 8
+          },
+          "descripcion": {
+            "type": "string",
+            "description": "Descripcion sobre la reserva",
+            "example": "Cumpleaños"
+          },
+          "mesas": {
+            "type": "array",
+            "description": "Platillos que lleva la orden facturada",
+            "items": {
+              "$ref": "#/components/schemas/Mesa"
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,5 +1,7 @@
 package unah.lenguajes.Restaurante.repositorios;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -17,5 +19,7 @@ public interface clienteRepositorio extends JpaRepository <clienteModelo,Integer
     //public clienteModelo findByidentificacion (String identificacion);
 
     public clienteModelo findByidentificacion(String identificacion);
+
+    public List<clienteModelo> findByNombre(String nombre);
 
 }

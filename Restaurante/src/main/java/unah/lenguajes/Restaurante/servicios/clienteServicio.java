@@ -103,4 +103,19 @@ public class clienteServicio {
         return null;
         
     }
+
+    public clienteModelo buscarClientePorIdentificacion(String identificacion)
+    {
+        return this.clienteRepositorio.findByidentificacion(identificacion);
+    }
+
+    public List<clienteModelo> buscarClientesPorNombre(String nombre)
+    {
+        return this.clienteRepositorio.findByNombre(nombre);
+    }
+
+    public Boolean verificarCliente(int clienteid)
+    {
+        return this.clienteRepositorio.existsById(clienteid);
+    }
 }

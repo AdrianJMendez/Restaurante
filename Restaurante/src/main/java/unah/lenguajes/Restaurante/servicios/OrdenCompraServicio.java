@@ -31,6 +31,7 @@ public class OrdenCompraServicio
 
         this.inventarioServicio.actualizarInventario(inventario.getInventarioId(), inventario);
 
+        ordenCompra.setPrecioTotal(ordenCompra.getCantidad() * inventario.getPreciocompra());
         return this.ordenCompraRepositorio.save(ordenCompra);
     }
 

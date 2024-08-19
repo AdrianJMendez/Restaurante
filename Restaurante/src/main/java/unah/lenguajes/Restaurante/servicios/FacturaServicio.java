@@ -1,6 +1,7 @@
 package unah.lenguajes.Restaurante.servicios;
 
 import java.util.List;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,6 +36,9 @@ public class FacturaServicio
     @Autowired
     private platilloServicio platilloServicio;
 
+    @Autowired
+    private usuarioServicio usuarioServicio;
+
     public List<Factura> obtenerTodasFacturas()
     {
         return this.facturaRepositorio.findAll();
@@ -42,6 +46,26 @@ public class FacturaServicio
 
     public Factura crearFactura(Factura factura)
     {
+        //verifica que exista el cliente
+        if(!(this.clienteServicio.verificarCliente(factura.getCliente().getClienteid())))
+        {
+            return null;
+        }
+
+        //verifica que exista el usuario
+        if(!(this.usuarioServicio.verificarUsuario(factura.getUsuario().getUsuarioid())))
+        {
+            return null;
+        }
+
+        //verifica que exista el platillo
+        for (FacturaPlatillo facturaPlatillo : factura.getPlatillos()) 
+        {
+            if (!(this.platilloServicio.verificarPlatillo(facturaPlatillo.getPlatillo().getPlatilloId()))) 
+            {
+                return null;
+            }    
+        }
 
         double subtotalFactura = 0;
         Factura nuevaFactura = this.facturaRepositorio.save(factura);
@@ -176,5 +200,24 @@ public class FacturaServicio
             return this.facturaRepositorio.findById(facturaId).get();
         }
         return null;
+    }
+
+    public  List<Factura> buscarFacturaPorNombreCliente(String nombreCliente)
+    {
+        List<clienteModelo> clientes = this.clienteServicio.buscarClientesPorNombre(nombreCliente);
+
+        List<Factura> listaDeFactura = new ArrayList<Factura>();
+
+        for (clienteModelo clienteModelo : clientes) 
+        {
+            
+            for (Factura factura : this.facturaRepositorio.findByCliente(clienteModelo)) 
+            {
+                listaDeFactura.add(factura);
+            }
+            
+        }
+
+        return listaDeFactura;
     }
 }

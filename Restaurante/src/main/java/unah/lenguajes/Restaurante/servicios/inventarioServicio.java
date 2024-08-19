@@ -44,6 +44,11 @@ public class inventarioServicio {
         return null;
     }
 
+    public inventarioModelo obtenerInventarioPorNombre(String nombre)
+    {
+        return this.inventarioRepositorio.findBynombre(nombre);
+    }
+
     @Transactional
     public boolean deleteInventarioPorNombre (String nombre)
     {
@@ -77,7 +82,6 @@ public class inventarioServicio {
         {
             inventarioModelo inventarioActualizar = this.inventarioRepositorio.findById(inventarioID).get();
             double cantidad = inventario.getCantidad();
-            cantidad = cantidad + inventario.getCantidad();
             inventarioActualizar.setCantidad(cantidad);
             inventarioActualizar.setPreciocompra(inventario.getPreciocompra());
 

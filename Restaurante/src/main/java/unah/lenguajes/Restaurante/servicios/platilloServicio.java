@@ -30,27 +30,10 @@ public class platilloServicio {
         return null;
     }
 
-    /* 
-     * 
-     *   public platilloModelo crearPlatillo(platilloModelo nvoPlatillo)
+    public boolean verificarPlatillo(int platilloId)
     {
-        platilloModelo nuevoPlatillo = this.platilloRepositorio.save(nvoPlatillo);
-        if(!this.platilloRepositorio.existsBynombre(nvoPlatillo.getNombre()))
-        {
-            for (InventarioPlatillo inventarioPlatillo : nuevoPlatillo.getInventarios()) 
-            {
-            inventarioPlatillo.setPlatillo(nuevoPlatillo);
-            }
-            
-            return this.platilloRepositorio.save(nuevoPlatillo);
-        } 
-        else {
-            return null ;
-        }
+        return this.platilloRepositorio.existsById(platilloId);
     }
-     * 
-    */
-  
 
     public platilloModelo crearPlatillo(platilloModelo platillo)
     {

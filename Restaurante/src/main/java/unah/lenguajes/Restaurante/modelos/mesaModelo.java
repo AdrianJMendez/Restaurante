@@ -20,4 +20,6 @@ public class mesaModelo {
     
     private int sillas;
 
+    private int ocupado;
+
 }

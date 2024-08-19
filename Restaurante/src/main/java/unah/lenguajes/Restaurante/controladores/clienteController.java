@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 
@@ -36,10 +38,13 @@ public class clienteController {
             return this.clienteServicio.obtenerTodos();
         }
 
-        @GetMapping("/prueba")
-        public String getMethodName() {
-            return "hola cliente";
+        @GetMapping("/obtener/identifiacion/{identificacion}")
+        public clienteModelo buscarClientePorIdentifiacion(@PathVariable(name = "identificacion") String identificacion) 
+        {
+            return this.clienteServicio.buscarClientePorIdentificacion(identificacion);
         }
+        
+
         @PostMapping("/crear")
        public clienteModelo crearCliente(@RequestBody clienteModelo nvoCliente)
        {
