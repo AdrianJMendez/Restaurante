@@ -26,7 +26,6 @@
           <div class="rect_element"></div>
           <div class="flex_row_container">
             <div class="hero_image_row">
-              <img class="hero_image" src="/assets/usuario.svg" alt="alt text" />
               <h1 class="hero_title_text">Name</h1>
             </div>
             <h1 class="time_display">07:35</h1>

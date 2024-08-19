@@ -21,7 +21,7 @@ class ReservaController extends Controller
         // Lógica para crear una nueva reserva
         $response = Http::post('http://localhost:8091/api/reserva/crear', [
             'cliente' => $cliente,
-            // Otros datos necesarios para la reserva
+            // Otros datos necesarios para la reserva 
         ]);
 
         return redirect('/reservas');

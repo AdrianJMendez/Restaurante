@@ -23,7 +23,6 @@
         <div class="content_box">
           <div class="flex_row">
             <div class="flex_row1">
-              <img class="image" src="/assets/usuario.svg" alt="alt text" />
               <h1 class="hero_title_name">Name</h1>
             </div>
             <h1 class="hero_title_time">07:35</h1>
@@ -53,14 +52,14 @@
                 <h1 class="hero_title_total_sales">Ventas Totales</h1>
                 <div class="group1">
                   <div class="rect4"></div>
-                  <h3 class="subtitle_total_sales_amount">{{ $ventasTotales }}</h3>
+                  <h3 class="subtitle_total_sales_amount">$ {{ $ventasTotales }}</h3>
                 </div>
               </div>
               <div class="flex_col4">
                 <h1 class="hero_title_total_profits">Ganancias Totales</h1>
                 <div class="group1">
                   <div class="rect4"></div>
-                  <h3 class="subtitle_total_profits_amount">{{ $gananciasTotales }}</h3>
+                  <h3 class="subtitle_total_profits_amount">$ {{ $gananciasTotales }}</h3>
                 </div>
               </div>
             </div>
