@@ -2,38 +2,90 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Services\InventarioService;
+use GuzzleHttp\Client;
 
 class InventarioController extends Controller
 {
-    protected $inventarioService;
 
-    public function __construct(InventarioService $inventarioService)
+    private $client;
+
+    public function __construct()
     {
-        $this->inventarioService = $inventarioService;
+        $this->client = new Client();
     }
 
-    public function index()
-    {
-        $productos = $this->inventarioService->obtenerTodos();
-        return view('inventario', compact('productos'));
-    }
 
-    public function show(){
-        return view('inventario');
+
+    public function show()
+    {
+        // Crear una instancia de Guzzle HTTP Client
+        $client = new Client();
+
+        try {
+            // Enviar la solicitud al backend de Spring Boot
+            $response = $client->get("http://localhost:8091/api/restaurante/inventario/todos");
+
+            // Decodificar la respuesta JSON
+            $inventario = json_decode($response->getBody(), true);
+
+            // Pasar los datos a la vista
+            return view('inventario', [
+                'inventario' => $inventario,
+            ]);
+
+        } catch (\Exception $e) {
+            // Manejar errores de la solicitud
+            return back()->withErrors(['error' => 'Hubo un problema al conectarse al servidor o al procesar la respuesta']);
+        }
     }
 
     
 
-    public function buscar(Request $request)
+    public function crearCliente(Request $request)
     {
-        $productos = $this->inventarioService->buscarPorNombre($request->input('nombre'));
-        return view('inventario', compact('productos'));
+        // Valida los datos del formulario
+        $validatedData = $request->validate([
+            'identificacion' => 'required|string',
+            'nombre' => 'required|string',
+            'apellido' => 'required|string',
+        ]);
+
+        // Envía los datos al backend usando Guzzle
+        $response = $this->client->post('http://localhost:8091/api/restaurante/cliente/crear', [
+            'json' => [
+                'identificacion' => $validatedData['identificacion'],
+                'nombre' => $validatedData['nombre'],
+                'apellido' => $validatedData['apellido'],
+            ],
+        ]);
+
+        // Maneja la respuesta del backend
+        if ($response->getStatusCode() == 200) {
+            // Redirige a la vista con la lista actualizada de clientes
+            return redirect()->route('clientes.index');
+
+        } else {
+            return back()->withErrors(['error' => 'Error al crear cliente']);
+        }
     }
 
-    public function ordenar()
-    {
-        $this->inventarioService->ordenarInventario();
-        return redirect()->route('inventario.index')->with('success', 'Inventario ordenado exitosamente.');
-    }
+    public function eliminar($identificacion)
+        {
+            try {
+                // Envía la solicitud al backend para eliminar el cliente
+                $response = $this->client->delete("http://localhost:8091/api/restaurante/cliente/borrar/dni/{$identificacion}");
+
+                if ($response->getStatusCode() == 200) {
+                    return redirect()->route('clients.index')->with('success', 'Cliente eliminado correctamente');
+                } else {
+                    return back()->withErrors(['error' => 'Error al eliminar cliente']);
+                }
+            } catch (\Exception $e) {
+                return back()->withErrors(['error' => 'Hubo un problema al conectarse al servidor o al procesar la respuesta']);
+            }
+        }
+
+    
+
+
 }
