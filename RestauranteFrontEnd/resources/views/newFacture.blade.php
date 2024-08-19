@@ -26,68 +26,75 @@
 
         
 
-        <div id="form">
-                <form action="{{ route('clientes.crear') }}" method="POST">
-                    @csrf <!-- Token de seguridad de Laravel -->
-
+        <form action="{{ route('factura.crear') }}" method="POST">
+        @csrf
                     <div class="grid-container">
-
-                            <div class="grid-item">
+                        <div class="grid-item">
+                            <div class="form-group">
+                                <label for="usuarioid">Id Usuario:</label>
+                                <input class="input-style" type="number" id="usuarioid" name="usuarioid" readonly>
+                            </div>
 
                             <div class="form-group">
                                 <label for="identificacion">RTN:</label>
-                                <input class="input-style" type="text" id="identificacion" name="identificacion" required>
-                            </div>
-                            <div class="grid-container">
-                                
+                                <input class="input-style" type="number" id="identificacion" name="identificacion" required>
                             </div>
 
+                            <div class="form-group">
+                                <label for="platillos">Selecciona Platillos:</label>
+                                <select id="platillos" class="select-style" name="platillos[]" multiple required>
+                                    @foreach($platillos as $plato)
+                                        <option value="{{ $plato['platilloId'] }}">{{ $plato['platilloId'] }}</option>
+                                    @endforeach
+                                </select>
                             </div>
 
-                            <div class="grid-item">
-                                <h2>Metodo de Pago</h2>
-                            <select id="MetododePago" name="MetododePago" class="select-style" required>
-                                
-                                <option value="1">Debito/Credito</option>
-                                <option value="2">Cash</option>
+                            <div class="form-group">
+                                <label for="cantidad">Selecciona cantidad:</label>
+                                <input class="input-style" type="number" id="cantidad" name="cantidad" required value="5">
+                            </div>
+                        </div>
+
+                        <div class="grid-item">
+                            <h2>Método de Pago</h2>
+                            <select id="metodoDePago" name="metodoDePago" class="select-style" required>
+                                <option value="Debito/Credito">Debito/Credito</option>
+                                <option value="Cash">Cash</option>
                             </select>
                             
                             <div class="form-group">
-                                <label for="nombre">Fecha:</label>
-                                <input class="input-style" type="text" id="nombre" name="nombre" required>
+                                <label for="fecha">Fecha:</label>
+                                <input class="input-style" type="datetime-local" id="fecha" name="fecha" required>
                             </div>
-
-                            <div class="form-group">
-                                <label for="nombre">Total:</label>
-                                <input class="input-style" type="text" id="nombre" name="nombre" readonly value="1000 Lps.">
-                            </div>
-
 
                             <input type="submit" value="Guardar">
-
-                            </div>
-
+                        </div>
                     </div>
+        </form>
 
-                </form>
-            </div>
 
-            <script>
-                document.addEventListener('DOMContentLoaded', function() {
-                    // Recupera los valores almacenados en localStorage
-                    const nombreUsuario = localStorage.getItem('nombreUsuario');
-                    const nombrePermiso = localStorage.getItem('nombrePermiso');
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Recupera los valores almacenados en localStorage
+                const nombreUsuario = localStorage.getItem('nombreUsuario');
+                const nombrePermiso = localStorage.getItem('nombrePermiso');
+                const usuarioid = localStorage.getItem('usuarioid');
 
-                    // Reemplaza los valores en la vista
-                    if (nombreUsuario) {
-                        document.getElementById('nombreUsuario').textContent = nombreUsuario;
-                    }
+                // Reemplaza los valores en la vista
+                if (nombreUsuario) {
+                    document.getElementById('nombreUsuario').textContent = nombreUsuario;
+                }
 
-                    if (nombrePermiso) {
-                        document.getElementById('nombrePermiso').textContent = nombrePermiso;
-                    }
-                });
-            </script>
+                if (nombrePermiso) {
+                    document.getElementById('nombrePermiso').textContent = nombrePermiso;
+                }
+
+                // Asigna el usuarioid al campo de entrada
+                if (usuarioid) {
+                    document.getElementById('usuarioid').value = usuarioid;
+                }
+            });
+        </script>
 
 </body>
 </html>

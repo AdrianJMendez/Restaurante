@@ -37,6 +37,8 @@
 
         </div> -->
         <div class="grid-item">
+
+        
             <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Buscar por nombres..">
 
             <table border="1">

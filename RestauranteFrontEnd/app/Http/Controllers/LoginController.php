@@ -27,6 +27,7 @@ class LoginController extends Controller
         // Extraer el nombre del usuario y el nombre del permiso
         $nombreUsuario = $usuario['user']; // Ajusta la clave según la estructura de tu respuesta
         $nombrePermiso = $usuario['categoriaPermiso']['nombre']; // Ajusta la clave según la estructura de tu respuesta
+        $usuarioid = $usuario['usuarioid'];
 
         // Pasar los datos a la vista
         // Determinar la vista a retornar
@@ -52,6 +53,7 @@ class LoginController extends Controller
         return view($vista, [
             'nombreUsuario' => $nombreUsuario,
             'nombrePermiso' => $nombrePermiso,
+            'usuarioid'=> $usuarioid,
         ]);
 
     } catch (\Exception $e) {

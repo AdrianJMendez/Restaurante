@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Validator;
 
 class FacturaController extends Controller
 {
@@ -21,6 +22,17 @@ class FacturaController extends Controller
 
         return view('factureAdmin');
 
+    }
+
+    
+    public function FactureNew()
+    {   
+        $client = new Client();
+        $response = $client->request('GET', 'http://localhost:8091/api/restaurante/platillo/todos');
+
+        $platillos = json_decode($response->getBody()->getContents(), true);
+
+        return view('newFacture', compact('platillos'));
     }
 
 
@@ -50,33 +62,59 @@ class FacturaController extends Controller
 
     
 
-    public function crearCliente(Request $request)
-    {
-        // Valida los datos del formulario
-        $validatedData = $request->validate([
-            'identificacion' => 'required|string',
-            'nombre' => 'required|string',
-            'apellido' => 'required|string',
-        ]);
+    public function crear(Request $request)
+{
+    // Validar los datos del formulario
+    $validator = Validator::make($request->all(), [
+        'usuarioid' => 'required|integer',
+        'identificacion' => 'required|integer',
+        'platillos' => 'required|array',
+        'platillos.*' => 'integer',
+        'cantidad.*' => 'required|integer',  // Asegúrate de que la cantidad sea un array
+        'fecha' => 'required|date',
+        'metodoDePago' => 'required|string'
+    ]);
 
-        // Envía los datos al backend usando Guzzle
-        $response = $this->client->post('http://localhost:8091/api/restaurante/cliente/crear', [
-            'json' => [
-                'identificacion' => $validatedData['identificacion'],
-                'nombre' => $validatedData['nombre'],
-                'apellido' => $validatedData['apellido'],
-            ],
-        ]);
-
-        // Maneja la respuesta del backend
-        if ($response->getStatusCode() == 200) {
-            // Redirige a la vista con la lista actualizada de clientes
-            return redirect()->route('clientes.index');
-
-        } else {
-            return back()->withErrors(['error' => 'Error al crear cliente']);
-        }
+    if ($validator->fails()) {
+        return redirect()->route('facture.new')->withErrors($validator)->withInput();
     }
+
+    $client = new Client();
+
+    try {
+        // Construcción del array de platillos con sus cantidades
+        $platillos = array_map(function($platilloId, $index) use ($request) {
+            return [
+                'platilloId' => $platilloId,
+                'cantidad' => $request->input('cantidad')[$index] // Accede a la cantidad correspondiente
+            ];
+        }, $request->input('platillos'), array_keys($request->input('platillos')));
+
+        // Envío de la solicitud POST a la API
+        $response = $client->post('http://localhost:8091/api/factura/crear', [
+            'json' => [
+                'usuario' => [
+                    'usuarioid' => $request->input('usuarioid')
+                ],
+                'cliente' => [
+                    'clienteid' => $request->input('identificacion')
+                ],
+                'oferta' => null, // Ignorando oferta
+                'platillos' => $platillos, // Array de platillos con cantidades
+                'fecha' => $request->input('fecha'),
+                'metodoDePago' => $request->input('metodoDePago')
+            ]
+        ]);
+
+        return redirect()->route('factura')->with('success', 'Factura creada exitosamente.');
+
+    } catch (\GuzzleHttp\Exception\RequestException $e) {
+        return redirect()->route('facture.new')->withErrors(['error' => 'Hubo un problema al crear la factura: ' . $e->getMessage()]);
+    } catch (\Exception $e) {
+        return redirect()->route('facture.new')->withErrors(['error' => 'Hubo un problema al crear la factura.']);
+    }
+}
+
 
     public function eliminar($identificacion)
         {

@@ -64,7 +64,9 @@ Route::get('/factura', [FacturaController::class, 'showFactura'])->name('factura
 
 Route::get('/factura/historial', [FacturaController::class, 'showFacturaH'])->name('factura.h');
 
-Route::get('/admin/facture/new', [TimeController::class, 'showTimeFactureNew'])->name('facture.new');
+Route::get('/admin/facture/new', [FacturaController::class, 'FactureNew'])->name('facture.new');
+
+Route::post('/factura/crear', [FacturaController::class, 'crear'])->name('factura.crear');
 
 //Inventario
 

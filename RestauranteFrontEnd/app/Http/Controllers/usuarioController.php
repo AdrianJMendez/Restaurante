@@ -46,6 +46,25 @@ class UsuarioController extends Controller
             return redirect()->route('usuarios.index')->with('error', 'Error al eliminar el usuario.');
         }
     }
+
+    public function actualizar(Request $request, $id)
+    {
+        $client = new Client();
+        $response = $client->put("http://localhost:8091/api/restaurante/usuario/actualizar/id/{$id}", [
+            'json' => [
+                'user' => $request->input('user'),
+                'contrasena' => $request->input('contrasena'),
+                'categoriapermiso' => $request->input('categoriaPermiso')
+            ]
+        ]);
+
+        if ($response->getStatusCode() == 200) {
+            return redirect()->route('usuarios.index')->with('success', 'Usuario actualizado exitosamente.');
+        } else {
+            return redirect()->route('usuarios.index')->with('error', 'Error al actualizar el usuario.');
+        }
+    }
+
 }
 
 
