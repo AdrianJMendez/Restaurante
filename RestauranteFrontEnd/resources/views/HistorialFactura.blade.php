@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Platillos</title>
-    <link rel="stylesheet" href="{{ asset('css/platillos.css') }}">
+    <title>Clientes</title>
+    <link rel="stylesheet" href="{{ asset('css/FacturaH.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lexend+Peta:wght@100..900&family=Playpen+Sans:wght@500&display=swap" rel="stylesheet">
@@ -24,31 +24,38 @@
         </div>
     </div>
 
-  
-    <a href="{{ route('platos.add') }}" class="grid-container-a">
-    <div class="grid-container-header">
-        <img src="{{ asset('images/lasana.png') }}" alt="ewe">
-        <h1>Agregar Nuevo Platillo</h1>
-    </div>
-    </a>
 
+    
 
     <div class="grid-container">
-                @foreach($platillos as $plato)
-                    <div class="grid-item">
-                        <h2>{{ $plato['nombre'] }}</h2> <!-- Nombre del platillo -->
-                        <p> ${{ number_format($plato['precio'], 2) }}</p> <!-- Precio del platillo -->
 
-                        <!-- Mostrar nombres de inventarios -->
-                        @foreach($plato['inventarios'] as $inventario)
-                            <p> {{ $inventario['inventario']['nombre'] }}</p>
-                        @endforeach
-                    </div>
-                @endforeach
+    <div class="flex-container">
+    
+        <!-- <div class="item1">item 1</div>
+            <div class="item2">item 2</div>
+            <div class="item3">item 3</div>
+
+        </div> -->
+        <div class="grid-item">
+            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Buscar por nombres..">
+
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Permiso</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                   
+                </tbody>
+
+            </table>
+        </div>
+
     </div>
-
-
-
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -66,6 +73,5 @@
         }
     });
     </script>
-
 </body>
 </html>

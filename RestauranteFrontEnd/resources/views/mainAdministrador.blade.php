@@ -34,7 +34,10 @@
         </div>
 
         <div class="grid-item">
-        <img src="{{ asset('images/Platos.png') }}" alt="" class="item-img">
+        <a href="{{ route('platos.index') }}">
+            <img src="{{ asset('images/Platos.png') }}" alt="" class="item-img"> 
+        </a>
+        
             Platos
         </div>
 
@@ -64,7 +67,7 @@
 
         <div class="grid-item">
         <img src="{{ asset('images/Clientes.png') }}" alt="" class="item-img">
-            Ventas
+            Reportes
         </div>
 
         

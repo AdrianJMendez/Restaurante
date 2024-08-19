@@ -19,6 +19,12 @@ class InventarioController extends Controller
         return view('inventario', compact('productos'));
     }
 
+    public function show(){
+        return view('inventario');
+    }
+
+    
+
     public function buscar(Request $request)
     {
         $productos = $this->inventarioService->buscarPorNombre($request->input('nombre'));

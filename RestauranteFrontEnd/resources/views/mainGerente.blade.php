@@ -33,7 +33,10 @@
         </div>
 
         <div class="grid-item">
-        <img src="{{ asset('images/Platos.png') }}" alt="" class="item-img">
+        <a href="{{ route('platos.index') }}">
+            <img src="{{ asset('images/Platos.png') }}" alt="" class="item-img"> 
+        </a>
+        
             Platos
         </div>
 
@@ -50,7 +53,10 @@
         </div>
 
         <div class="grid-item">
-        <img src="{{ asset('images/Inventario.png') }}" alt="" class="item-img">
+        
+        <a href="{{ route('inventario.index') }}">
+            <img src="{{ asset('images/Inventario.png') }}" alt="" class="item-img"> 
+        </a>
                 
         Inventario
         </div>
@@ -61,13 +67,8 @@
         </div>
 
         <div class="grid-item">
-        <img src="{{ asset('images/Compras.png') }}" alt="" class="item-img">
-            Compras
-        </div>
-
-        <div class="grid-item">
         <img src="{{ asset('images/Clientes.png') }}" alt="" class="item-img">
-            Ventas
+            Reportes
         </div>
 
         <div class="grid-item">

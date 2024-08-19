@@ -13,4 +13,13 @@ class FacturaController extends Controller
         return view('factureAdmin');
 
     }
+
+
+    public function showFacturaH()
+    {
+
+
+        return view('HistorialFactura');
+
+    }
 }

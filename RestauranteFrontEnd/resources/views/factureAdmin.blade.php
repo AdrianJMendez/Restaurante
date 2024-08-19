@@ -33,7 +33,7 @@
         </div>
 
         <div class="grid-item">
-            <a href="{{ route('facture.new') }}">
+            <a href="{{ route('factura.h') }}">
                 <img src="{{ asset('images/image 17.png') }}" alt="">
                 <h1>Historial de Facturas</h1>
             </a>

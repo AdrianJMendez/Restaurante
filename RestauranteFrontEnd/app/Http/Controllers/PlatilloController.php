@@ -4,42 +4,61 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Services\PlatilloService;
+use GuzzleHttp\Client;
+
 
 class PlatilloController extends Controller
 {
-    protected $platilloService;
 
-    public function __construct(PlatilloService $platilloService)
+    public function __construct()
     {
-        $this->platilloService = $platilloService;
+        $this->client = new Client(); // Inicializa el cliente Guzzle
     }
 
     // Método para mostrar todos los platillos
     public function index()
     {
-        $platillos = $this->platilloService->obtenerTodos();
+        $client = new Client();
+        $response = $client->request('GET', 'http://localhost:8091/api/restaurante/platillo/todos');
+
+        $platillos = json_decode($response->getBody()->getContents(), true);
+
         return view('platillos', compact('platillos'));
     }
 
     // Método para mostrar el formulario de creación de platillo
     public function create()
     {
-        return view('agregarPlatillo');
+        $client = new Client();
+        $response = $client->request('GET', 'http://localhost:8091/api/restaurante/inventario/todos');
+
+        $ingredientes = json_decode($response->getBody()->getContents(), true);
+
+        return view('agregarPlatillos', compact('ingredientes'));
     }
+    
+    
 
     // Método para almacenar un nuevo platillo
-    public function store(Request $request)
+   public function crear(Request $request)
     {
-        $data = $request->validate([
-            'nombre' => 'required|string|max:255',
-            'precio' => 'required|numeric',
-            'ingredientes' => 'required|string',
+       
+
+        // Envía los datos al backend usando Guzzle
+        $response = $this->client->post('http://localhost:8091/api/restaurante/platillo/crear', [
+            'json' => [
+                'nombre' => $request->input('nombre'),
+                'precio' => $request->input('precio'),
+            ],
         ]);
 
-        $this->platilloService->crearPlatillo($data);
-
-        return redirect()->route('platillos.index')->with('success', 'Platillo agregado exitosamente.');
+        // Maneja la respuesta del backend
+        if ($response->getStatusCode() == 200) {
+            // Redirige a la vista con la lista actualizada de platillos
+            return redirect()->route('platillos.index')->with('success', 'Platillo agregado exitosamente.');
+        } else {
+            return back()->withErrors(['error' => 'Error al crear el platillo']);
+        }
     }
 
     // Método para mostrar el formulario de edición de un platillo
