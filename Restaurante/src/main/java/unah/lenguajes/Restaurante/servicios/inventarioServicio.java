@@ -82,7 +82,6 @@ public class inventarioServicio {
         {
             inventarioModelo inventarioActualizar = this.inventarioRepositorio.findById(inventarioID).get();
             double cantidad = inventario.getCantidad();
-            cantidad = cantidad + inventario.getCantidad();
             inventarioActualizar.setCantidad(cantidad);
             inventarioActualizar.setPreciocompra(inventario.getPreciocompra());
 
