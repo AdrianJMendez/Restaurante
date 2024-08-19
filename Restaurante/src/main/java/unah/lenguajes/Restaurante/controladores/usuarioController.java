@@ -16,6 +16,8 @@ import unah.lenguajes.Restaurante.dto.userDTO;
 import unah.lenguajes.Restaurante.modelos.usuarioModelo;
 
 import unah.lenguajes.Restaurante.servicios.usuarioServicio;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 @RequestMapping("/api/restaurante/usuario")
@@ -31,6 +33,13 @@ public class usuarioController {
         return this.usuarioServicio.obtenerTodos();
     }
 
+    @GetMapping("/obtener/user/{user}")
+    public usuarioModelo buscarUsuarioPorNombre(@PathVariable(name = "user") String user) 
+    {
+        return this.usuarioServicio.buscarUsuarioPorNombre(user);
+    }
+    
+
     @PostMapping("/crear")
     public usuarioModelo crearUsuario(@RequestBody userDTO nvoUsuario) {
         
@@ -38,12 +47,12 @@ public class usuarioController {
     }
 
     @DeleteMapping("/borrar/id/{id}") 
-    public boolean borrarPlatillo(@PathVariable(name="id") int id)
+    public boolean borrarUsuario(@PathVariable(name="id") int id)
     {
         return this.usuarioServicio.deleteUsuario(id);
     }
     @DeleteMapping("/borrar/user/{user}") 
-    public boolean borrarPlatillo(@PathVariable(name="user") String user)
+    public boolean borrarUsuarioPorNombre(@PathVariable(name="user") String user)
     {
         return this.usuarioServicio.deleteUsuarioByNombre(user);
     }

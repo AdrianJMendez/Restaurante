@@ -26,6 +26,11 @@ public class usuarioServicio {
 
     }
 
+    public usuarioModelo buscarUsuarioPorNombre(String user)
+    {
+        return this.usuarioRepositorio.findByUser(user);
+    }
+
     public usuarioModelo crearUsuario(String user, String contrasena, Integer categoriaPermisoID )
     {
         if(!this.usuarioRepositorio.existsByUser(user))
@@ -71,43 +76,31 @@ public class usuarioServicio {
             return false;
         }
     }
-/* 
-    public usuarioModelo actualizarUsuario (Integer usuarioid, usuarioModelo usuario)
+
+    public boolean verificarUsuario(int usuarioid)
     {
-        if(this.usuarioRepositorio.existsById(usuarioid))
+        return this.usuarioRepositorio.existsById(usuarioid);
+    }
+        
+    public usuarioModelo actualizarUsuario (Integer usuarioid, String user, String contrasena, Integer categoriaPermisoID)
+    {
+        if (this.usuarioRepositorio.existsById(usuarioid))
         {
             usuarioModelo usuarioActualizar = this.usuarioRepositorio.findById(usuarioid).get();
-            usuarioActualizar.setUser(usuario.getUser());
-            usuarioActualizar.setContrasena(usuario.getContrasena());
-            usuarioActualizar.setCategoriaPermiso(usuario.getCategoriaPermiso());
-            
+            categoriaPermisoModelo permiso = categoriaPermisoRepositorio.findById(categoriaPermisoID).get();
+            usuarioActualizar.setUser(user);
+            usuarioActualizar.setContrasena(contrasena);
+            usuarioActualizar.setCategoriaPermiso(permiso);
+
             this.usuarioRepositorio.save(usuarioActualizar);
             return usuarioActualizar;
 
-        }
-        else 
-        {
+        } else{
             return null;
-        }*/
-        public usuarioModelo actualizarUsuario (Integer usuarioid, String user, String contrasena, Integer categoriaPermisoID)
-        {
-            if (this.usuarioRepositorio.existsById(usuarioid))
-            {
-                usuarioModelo usuarioActualizar = this.usuarioRepositorio.findById(usuarioid).get();
-                categoriaPermisoModelo permiso = categoriaPermisoRepositorio.findById(categoriaPermisoID).get();
-                usuarioActualizar.setUser(user);
-                usuarioActualizar.setContrasena(contrasena);
-                usuarioActualizar.setCategoriaPermiso(permiso);
-
-                this.usuarioRepositorio.save(usuarioActualizar);
-                return usuarioActualizar;
-
-            } else{
-                return null;
-            }
+        }
             
     
-        }
-
     }
+
+}
 

@@ -44,6 +44,11 @@ public class inventarioServicio {
         return null;
     }
 
+    public inventarioModelo obtenerInventarioPorNombre(String nombre)
+    {
+        return this.inventarioRepositorio.findBynombre(nombre);
+    }
+
     @Transactional
     public boolean deleteInventarioPorNombre (String nombre)
     {
