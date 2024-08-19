@@ -42,14 +42,23 @@
             <table border="1">
                 <thead>
                     <tr>
-                        <th>Id</th>
-                        <th>Nombre</th>
-                        <th>Permiso</th>
-                        <th>Acción</th>
+                        <th>Usuario</th>
+                        <th>cliente</th>
+                        <th>Fecha</th>
+                        <th>MetodoPago</th>
+                        <th>Total</th>
                     </tr>
                 </thead>
                 <tbody>
-                   
+                @foreach($facturas as $item)
+                            <tr>
+                                <td>{{ $item['usuario']['usuarioid'] }}</td>
+                                <td>{{ $item['cliente']['clienteid'] }}</td>
+                                <td>{{ $item['fecha'] }}</td>
+                                <td>{{ $item['metodoDePago'] }}</td>
+                                <td>{{ $item['total'] }}</td>
+                            </tr>
+                @endforeach
                 </tbody>
 
             </table>

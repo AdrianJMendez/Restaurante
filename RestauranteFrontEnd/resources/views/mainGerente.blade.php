@@ -41,7 +41,9 @@
         </div>
 
         <div class="grid-item">
-        <img src="{{ asset('images/Clientes.png') }}" alt="" class="item-img">
+        <a href="{{ route('ordenes.index') }}">
+            <img src="{{ asset('images/Inventario.png') }}" alt="" class="item-img"> 
+        </a>
             Ordenes
         </div>
 

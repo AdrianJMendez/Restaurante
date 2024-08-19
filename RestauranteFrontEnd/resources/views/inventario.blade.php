@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clientes</title>
+    <title>Inventario</title>
     <link rel="stylesheet" href="{{ asset('css/FacturaH.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,38 +24,38 @@
         </div>
     </div>
 
-
-    
-
     <div class="grid-container">
+        <div class="flex-container">
+            <div class="grid-item">
+                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Buscar por nombres..">
 
-    <div class="flex-container">
-    
-        <!-- <div class="item1">item 1</div>
-            <div class="item2">item 2</div>
-            <div class="item3">item 3</div>
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nombre</th>
+                            <th>Precio</th>
+                            <th>Cantidad</th>
+                            <th>Unidad</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tbody>
+                        @foreach($inventario as $item)
+                            <tr>
+                                <td>{{ $item['inventarioId'] }}</td>
+                                <td>{{ $item['nombre'] }}</td>
+                                <td>{{ $item['preciocompra'] }}</td>
+                                <td>{{ $item['cantidad'] }}</td>
+                                <td>{{ $item['unidadmetrica'] }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
 
-        </div> -->
-        <div class="grid-item">
-            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Buscar por nombres..">
-
-            <table border="1">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Nombre</th>
-                        <th>Precio</th>
-                        <th>Cantidad</th>
-                        <th>U</th>
-                    </tr>
-                </thead>
-                <tbody>
-                   
-                </tbody>
-
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
-
     </div>
 
     <script>
